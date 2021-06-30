@@ -77,7 +77,14 @@ const Util = {
     }
   
     for (let attrName in attributes) {
-      el[attrName] = attributes[attrName]
+      if (attrName == 'data') {
+        const data = attributes[attrName]
+        for (let key in data) {
+          el.dataset[key] = data[key]
+        }
+      } else {
+        el[attrName] = attributes[attrName]
+      }
     }
   
     if (parent) {

@@ -249,7 +249,7 @@ ru:
     '500': "К сожалению, что-то пошло не так."
 
   javascript:
-    reading_time: "%minutes% мин. чтения" 
+    reading_time: "%{minutes} мин. чтения" 
     loading: "Загружается..." 
     popup:
       close: "Закрыть (Esc)"

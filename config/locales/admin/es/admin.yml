@@ -500,12 +500,3 @@ es:
       locale:
         all_languages: "Todos los Idiomas"
         other_languages: "Otros Idiomas"
-
-    javascript:      
-      email: "Email"
-      message: "Mensaje"
-      drag_images_to_upload: "Arrastra las imágenes aquí para subir"
-      no_results: "No se encontraron resultados..."
-      waiting_for_upload: "Esperando a que terminen de subirse  %{count} archivo/s..."
-      file: "Archivo"
-      files: "Archivos"

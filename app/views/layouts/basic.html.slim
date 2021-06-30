@@ -19,8 +19,8 @@ html lang=locale
     / iOS Safari
     meta name="apple-mobile-web-app-status-bar-style" content="#000"
 
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_packs_with_chunks_tag 'public', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_packs_with_chunks_tag 'public', 'data-turbolinks-track': 'reload'
 
 body class="#{controller_name} #{controller_name}-#{action_name}"
   = yield

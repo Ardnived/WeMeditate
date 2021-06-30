@@ -505,12 +505,3 @@ ro:
         no_languages: "Nicio Limbă"
         all_languages: "Toate Limbile"
         other_languages: "Altă Limbă"
-
-    javascript:      
-      email: "Email"
-      message: "Mesaj"
-      drag_images_to_upload: "Selectează imaginea pentru a o încărca"
-      no_results: "Niciun rezultat găsit..."
-      waiting_for_upload: "Încă %{count} fișier(e) pâna la terminarea încărcării..."
-      file: "Fișier"
-      files: "Fișiere"

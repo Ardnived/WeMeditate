@@ -224,7 +224,7 @@ cs:
     '500': "Je nám líto, něco se pokazilo"
 
   javascript:
-    reading_time: "%minutes% minut čtení" # Eg. 5 minute read
+    reading_time: "%{minutes} minut čtení" # Eg. 5 minute read
     loading: "Načítání..."
     popup:
       close: "Zavřít (Esc)"

@@ -13,7 +13,7 @@ ruby:
           /.content__splash__divider
           .content__splash__conference
             a title=translate("streams.live.action.#{record.video_conference_type}") href=record.video_conference_url target='_blank'
-              img src=image_path("streams/#{record.video_conference_type}.png")
+              = image_pack_tag "streams/#{record.video_conference_type}.png"
             span = translate("streams.live.action.#{record.video_conference_type}")
         - else
           .content__splash__watch

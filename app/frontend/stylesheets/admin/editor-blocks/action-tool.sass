@@ -1,0 +1,55 @@
+@use 'tool'
+@include set($tool: action)
+
+@include block
+  .cdx-block
+    text-align: center
+
+@include type(button)
+  .cdx-action__sample-form
+    display: none
+
+  @include on-fields(title, subtitle, text, list_id)
+    display: none
+
+@include type(form)
+  .cdx-block
+    padding: 2em 0
+    background: beige
+    padding: 20px 10px
+    margin: 10px 0
+
+  .cdx-action
+    &__sample-form
+      margin: 0.5em 0
+
+    &__sample-input
+      border: 1px solid gray
+      background: lightgray
+      text-align: left
+
+      width: 280px
+      padding: 0.5em 1em
+      margin: 5px auto
+      opacity: 0.4
+
+      &--message
+        min-height: 64px
+
+  @include on-field(title)
+    font-size: 1.1em
+
+  @include on-field(subtitle)
+    margin-bottom: 0.25em
+
+  @include with-option(form, contact)
+    @include on-field(list_id)
+      display: none
+
+  @include with-option(form, signup)
+    .cdx-action__sample-input--message
+      display: none
+
+  @include with-option(spacing, spaced)
+    .cdx-block
+      margin: 30px 0

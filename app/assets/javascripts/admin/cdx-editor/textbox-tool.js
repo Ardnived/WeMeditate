@@ -45,6 +45,7 @@ class TextboxTool extends EditorTool {
       fields: {
         image: { input: false },
         title: { input: 'title', contained: true },
+        subtitle: { input: 'caption', contained: true },
         text: { input: 'content' },
         action: { input: 'button', contained: true },
         url: { input: 'url', contained: true },
@@ -88,7 +89,7 @@ class TextboxTool extends EditorTool {
       ],
     }, api)
 
-    this.CSS.fieldsContainer = `${this.CSS.container}-fields`
+    this.CSS.fieldsContainer = `${this.CSS.container}__fields`
     this.CSS.image = {
       remove: `${this.CSS.fields.image}__remove`,
       img: `${this.CSS.fields.image}__img`,

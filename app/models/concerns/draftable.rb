@@ -181,7 +181,7 @@ module Draftable
     def append_block! block, to: nil
       if block.present? && to.present?
         to['blocks'] << block
-        to['media_files'] << block['data']['media_files'] if block['data']['media_files'].present?
+        to['mediaFiles'] << block['data']['mediaFiles'] if block['data']['mediaFiles'].present?
       end
     end
 

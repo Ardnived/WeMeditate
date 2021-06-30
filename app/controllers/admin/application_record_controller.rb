@@ -9,6 +9,8 @@ module Admin
         @records = policy_scope(@model).order(updated_at: :desc).q(params[:q])
         @records = sort_by(@records, params[:sort])
         @records = filter_by(@records, params[:filter])
+        @records = @records.where(id: params[:ids].split(',').map(&:to_i)) unless params[:ids].blank?
+        @records = @records.where.not(id: params[:exclude].split(',').map(&:to_i)) unless params[:exclude].blank?
 
         respond_to do |format|
           format.html do
@@ -22,7 +24,16 @@ module Admin
           end
 
           format.json do
-            render json: @records.limit(5).to_json(only: %i[id name])
+            records_json = @records.limit(5).map do |record|
+              {
+                id: record.id,
+                name: record.name,
+                excerpt: record.try(:excerpt),
+                preview: record.try(:thumbnail)&.small&.url,
+              }
+            end
+
+            render json: records_json
           end
         end
       end

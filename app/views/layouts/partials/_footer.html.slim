@@ -10,14 +10,14 @@
 - privacy_page = static_page_preview_for(:privacy)
 
 footer.footer
-  .footer__divider: img src=image_path('footer/illustration.svg')
-  a.footer__scrollback href='#top' = translate 'footer.scroll_to_top'
+  .footer__divider = image_pack_tag('footer/illustration.svg')
+  a.footer__scrollback href='#top' = translate('footer.scroll_to_top')
 
   .footer__columns
     .footer__column.footer__column--lead.footer__column--desktop
       nav.footer__navigation.footer__navigation--bold
-        a.footer__link href=meditations_path = translate 'footer.meditate_now'
-        a.footer__link href=tracks_path = translate 'footer.music_for_meditation'
+        a.footer__link href=meditations_path = translate('footer.meditate_now')
+        a.footer__link href=tracks_path = translate('footer.music_for_meditation')
         a.footer__link href=categories_path = articles_page.name
 
     .footer__column.footer__column--desktop

@@ -1,0 +1,116 @@
+@import "../../mixins/*"
+
+$orientation-transition: 1s
+$activate-transition: 0.5s
+
+.video
+  position: relative
+  margin-left: auto
+  margin-right: auto
+  transition: all $activate-transition
+  max-width: none
+
+  &__inner
+    position: relative
+    height: 0
+    
+    transition: all $activate-transition
+    padding-top: 68.25%
+
+  iframe, .afterglow
+    @include overlay
+    width: 100%
+    height: 100%
+
+.video--active
+  .video__thumbnail,
+  .video__button
+    transition: opacity $orientation-transition
+    opacity: 0
+    z-index: -1
+
+  iframe
+    transition: z-index 0s
+    transition-delay: $orientation-transition
+    z-index: 0
+
+// ===== ORIENTATION ===== //
+.video--responsive
+  @media (orientation: portrait) and (max-width: #{$tablet-width - 1px})
+    max-width: 45vh
+
+    .video__inner
+      padding-top: 177.78%
+    
+    .video__horizontal
+      position: relative
+      overflow: hidden
+      height: 0 !important
+
+  @media (orientation: landscape), (min-width: #{$tablet-width})
+    .video__vertical
+      position: relative
+      overflow: hidden
+      height: 0 !important
+
+// ===== POPUP ===== //
+.video__popup
+  @include mobile
+    display: none
+
+  @include tablet-or-larger
+    + .video__button
+      display: none
+
+// ===== VIDEO THUMBNAIL ===== //
+.video__thumbnail
+  @at-root .video__inner &
+    @include overlay
+
+  img
+    width: 100%
+    height: 100%
+
+// ===== VIDEO BUTTON ===== //
+.video__button
+  @include video-button
+
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translateX(-50%) translateY(-50%)
+  z-index: 2
+  
+  .video__button--disabled
+    border-color: transparent !important
+    cursor: inherit !important
+
+  &__loader
+    position: absolute
+    font-size: 50px
+    margin: 8px
+    color: white
+    display: none
+
+  &--loading .video__button__loader
+    display: block
+
+  &--small
+    @include tablet
+      width: 80px
+      height: 80px
+      padding: 12px
+
+  &--large
+    @include tablet-or-larger
+      width: 170px
+      height: 170px
+      padding: 32px
+
+  &--vertical
+    @media (orientation: landscape)
+      display: none
+
+  &--horizontal
+    @media (orientation: portrait)
+      display: none

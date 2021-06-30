@@ -222,7 +222,7 @@ bg:
     '500': "Съжаляваме, но нещо се обърка"
 
   javascript:
-    reading_time: "%minutes% минути четено"
+    reading_time: "%{minutes} минути четено"
     loading: "Зареждане..."
     popup:
       close: "Затвори (Esc)"

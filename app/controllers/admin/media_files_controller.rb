@@ -19,7 +19,7 @@ module Admin
       authorize @parent, :upload?
       @media_file = @parent.media_files.build params.permit(:file)
 
-      return render json: { errors: @media_file.errors }, status: 422 unless @media_file.validate
+      return render json: { errors: @media_file.errors.full_messages }, status: 422 unless @media_file.validate
 
       # Bypass Heroku's 30s request timeout by treating it as a streaming response:
       # https://devcenter.heroku.com/articles/request-timeout#long-polling-and-streaming-responses

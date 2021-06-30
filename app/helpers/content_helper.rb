@@ -11,7 +11,15 @@ module ContentHelper
     record.content_blocks.each do |block|
       next if block['type'] == 'splash' && skip_splash
 
-      concat render "content_blocks/#{block['type']}_block", block: block['data'].deep_symbolize_keys, record: record
+      if block['data']['legacy']
+        concat render "content_blocks/legacy/#{block['type']}_block", block: block['data'].deep_symbolize_keys, record: record
+      elsif block['data']['type']
+        concat render "content_blocks/#{block['type']}/#{block['data']['type']}_block", block: block['data'].deep_symbolize_keys, record: record
+      else
+        concat render "content_blocks/#{block['type']}_block", block: block['data'].deep_symbolize_keys, record: record
+      end
+    rescue ActionView::MissingTemplate => e
+      concat content_tag(:p, "Unsupported block #{block.inspect}")
     end
 
     return nil

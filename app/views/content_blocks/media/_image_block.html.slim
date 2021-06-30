@@ -1,0 +1,56 @@
+
+ruby:
+  position = %w[left right center].include?(block[:position]) ? block[:position] : 'center'
+  size = %w[narrow wide].include?(block[:size]) ? block[:size] : 'narrow'
+  is_floating = %w[left right].include?(position)
+  is_gallery = block[:quantity] == 'gallery'
+  position = nil if is_gallery
+  size = nil if is_floating
+  items = is_gallery ? block[:items] : [block[:items].first]
+
+  classes = []
+  classes << "cb-image-media--#{position}" if position
+  classes << "cb-image-media--#{size}" if size
+
+  if is_gallery
+    classes << 'cb-image-media--gallery'
+    classes << 'js-grid js-image-gallery'
+  elsif is_floating
+    classes << 'cb-image-media--floating'
+  else
+    classes << 'cb-image-media--center'
+  end
+
+  if position == 'wide'
+    image_sizes = '100vw'
+  elsif position == 'narrow'
+    image_sizes = '(max-width: 814px) calc(100vw - 48px), 400px'
+  elsif is_gallery
+    image_sizes = '(max-width: 549px) 100vw, (max-width: 767px) 50vw, (max-width: 1111px) 34vw, (max-width: 1198px) 25vw, 300px'
+  else # callouts
+    image_sizes = '(max-width: 814px) calc(100vw - 48px), 766px'
+  end
+
+.cb-image-media class=classes data-max-columns=(size == 'narrow' ? 3 : items.count)
+  - items.compact.each_with_index do |item, index|
+    - media_file = record.media_files.find_by(id: item[:image][:id])
+    - if media_file.present?
+      - attributes = media_file.to_h.merge(title: item[:caption]) if is_gallery
+      figure.cb-image-media__item data-attributes=attributes&.to_json
+        a.cb-image-media__item__media href=(media_file.file_url if is_gallery) target='_blank'
+          = smart_image_tag media_file.file, image_sizes, lazy: false, class: 'cb-image-media__img', alt: (item[:alt] || item[:caption])
+
+          - if item[:credit].present?
+            .cb-image-media__credit #{translate 'content.credit'} • #{item[:credit]}
+
+        - unless is_gallery || is_floating
+          .cb-image-media__triangle = render_decoration :triangle, block
+
+        - if item[:caption].present?
+          .cb-image-media__item__content
+            figcaption.cb-image-media__caption = item[:caption]
+    - elsif current_user.present?
+      = content_error "Could not load media file with id #{item[:image][:id]}"
+
+  - if is_gallery
+    .cb-image-media__triangle = render_decoration :triangle, block

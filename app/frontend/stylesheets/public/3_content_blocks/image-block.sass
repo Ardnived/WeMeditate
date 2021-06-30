@@ -1,0 +1,118 @@
+
+.content__image,
+.content__image__item__media
+  position: relative
+  display: block
+
+.content__image__img
+  width: 100%
+
+// ===== MEDIA CAPTION ===== //
+.content__image__caption
+  margin: 10px 0
+  font-size: 1.4rem
+  line-height: 1.5
+  opacity: 0.8
+
+.content__image__credit
+  color: $color-text-lighter
+  white-space: nowrap
+  margin-top: 8px
+  font-size: 1.6rem
+  line-height: 1.875
+  letter-spacing: 0.3px
+
+  @include tablet-or-larger
+    position: absolute
+    bottom: 0
+    right: 100%
+    margin-right: 10px
+
+    writing-mode: vertical-rl
+    transform: rotate(180deg)
+
+// ===== CALLOUT IMAGE ===== //
+.content__image--callout
+  @extend %wide-content-width
+  margin-top: 0 !important
+
+  @include desktop
+    max-width: $laptop-content-width
+
+  .content__image__item
+    margin: 50px 0
+
+    @include tablet-or-larger
+      margin: 24px 0
+
+  .content__image__img
+    width: auto
+    min-height: 300px
+    max-width: 100%
+    max-height: 400px
+
+  .content__image__item__content
+    display: flex
+
+  .content__image__caption
+    width: 0
+    flex-grow: 1
+
+  &-right .content__image__credit
+    right: auto
+    left: 100%
+    margin-left: 10px
+    transform: none
+
+@each $side in left right
+  $opposite: if($side == right, left, right)
+
+  .content__image--#{$side} .content__image__item
+    @include tablet-or-larger
+      float: $side
+      margin-#{$side}: 20px
+      margin-#{$opposite}: 50px
+
+// ===== CENTERED IMAGE ===== //
+.content__image--center
+  margin: auto
+
+.content__image--center img
+  width: 100%
+  min-height: 175px
+
+// NARROW IMAGE
+.content__image--narrow
+  @extend %narrow-content-width
+
+// WIDE IMAGE
+.content__image--wide
+  margin-top: 90px
+  margin-bottom: 90px
+  max-width: 2000px
+
+  .content__image__credit
+    @include tablet-or-larger
+      color: $color-text-inverse
+      margin-right: -70px
+      margin-bottom: 20px
+
+  .content__image__item__content
+    @extend %narrow-content-width
+
+  .content__image__triangle
+    @extend %wide-content-width
+
+// ===== IMAGE GALLERY ===== //
+.content__image--gallery
+  &.content__image--wide
+    @extend %wide-content-width
+
+  img
+    cursor: pointer
+
+  .content__image__caption
+    padding: 12px $gutter-width
+
+    @include tablet-or-larger
+      padding: 4px 12px

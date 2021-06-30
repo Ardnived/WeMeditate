@@ -1,0 +1,17 @@
+
+.cb-grid-layout
+  .cb-grid-layout__grid.js-grid data-max-columns=3
+    - block[:items].first(3).each do |item|
+      article.cb-grid-layout__item
+        h3.cb-grid-layout__title = item[:title]
+        .cb-grid-layout__text = simple_format_content item[:text]
+
+  - if block[:items].count > 3
+    .cb-grid-layout__loadmore.js-loadmore
+      button.button.button--box
+        = translate 'content.show_more'
+      template
+        - block[:items].drop(3).each do |item|
+          article.cb-grid-layout__item
+            h3.cb-grid-layout__title = item[:title]
+            .cb-grid-layout__text = simple_format_content item[:text]

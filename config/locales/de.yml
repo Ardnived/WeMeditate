@@ -224,7 +224,7 @@ de:
     '500': "Es tut uns leid, etwas ist schief gelaufen"
 
   javascript:
-    reading_time: "%minutes% Minuten zu lesen"
+    reading_time: "%{minutes} Minuten zu lesen"
     loading: "Laden..."
     popup:
       close: "Schließen (Esc)"

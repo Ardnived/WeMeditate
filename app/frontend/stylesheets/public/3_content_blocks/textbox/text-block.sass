@@ -1,0 +1,154 @@
+
+.cb-text-textbox
+  color: $color-text-dark
+
+// ===== CENTERED QUOTE ===== //
+// The basic kind of quote.
+.cb-text-textbox--center
+  @extend %narrow-content-width
+
+.cb-text-textbox--center .cb-text-textbox
+  &__block
+    max-width: 640px
+    text-align: center
+    font-weight: $font-medium
+    font-size: 1.6rem
+    line-height: 1.875
+    margin: 72px auto
+    clear: both
+
+    @include laptop-or-larger
+      margin-bottom: 80px
+
+    .divider--leaf-up
+      margin-bottom: 42px
+
+    .divider--leaf-down
+      margin-top: 42px
+
+  &__text
+    margin-bottom: 24px
+
+    @include laptop-or-larger
+      font-size: 2.3rem
+      line-height: 1.6
+      margin-bottom: 16px
+
+  &__title
+    font-weight: $font-bold
+    font-size: 1.8rem
+    line-height: 1.4
+
+  &__credit
+    @include laptop-or-larger
+      font-size: 1.8rem
+      line-height: 1.4
+
+  &__caption
+    font-weight: $font-light
+    font-size: 1.4rem
+    line-height: 30px
+
+// ===== POEM QUOTE ===== //
+.cb-text-textbox--poem
+  @extend %narrow-content-width
+
+  @each $side in left right
+    &.cb-text-textbox--#{$side}
+      .cb-text-textbox__block
+        margin-#{$side}: 20px
+        border-#{$side}: 1px solid #AAAAA9
+        text-align: $side
+
+.cb-text-textbox--poem .cb-text-textbox
+  &__block
+    padding: 0.5em 1em
+
+  &__text
+    font-size: 1.8rem
+    line-height: 1.6
+
+  &__text > p
+    &:first-child
+      margin-top: 0
+
+    &:last-child
+      margin-bottom: 0
+
+.cb-text-textbox--poem.cb-text-textbox--center .cb-text-textbox
+  &__block
+    max-width: 400px
+    text-align: left
+
+  &__text
+    line-height: 2
+
+  &__block
+    .divider--leaf-up
+      margin-bottom: 28px
+
+    .divider--leaf-down
+      margin-top: 28px
+
+// ===== FLOATING TEXTBOX ===== //
+// This is a textbox which is placed as an insert into the text.
+.cb-text-textbox--floating
+  max-width: 1050px
+  margin: auto
+  margin-top: 0 !important
+
+  .cb-text-textbox__block
+    position: relative
+    padding: 32px 0
+    padding-left: $gutter-width
+    margin-top: 15px
+    margin-bottom: 45px
+
+    @include tablet-or-larger
+      max-width: 400px
+      padding-left: 0
+
+    @include desktop
+      max-width: 360px
+
+  .cb-text-textbox__text
+    font-weight: $font-semibold
+    font-size: 1.6rem
+    line-height: 1.625
+    letter-spacing: 0.2px
+
+  .cb-text-textbox__credit,
+  .cb-text-textbox__caption
+    font-size: 1.4rem
+    line-height: 1.875
+
+  .cb-text-textbox__caption
+    font-style: italic
+
+  @each $side in left right
+    $opposite: if($side == right, left, right)
+
+    &.cb-text-textbox--#{$side}
+      .cb-text-textbox__block
+        float: $side
+        text-align: $side
+        padding-#{$side}: $gutter-width
+
+        @include mobile
+          padding-#{$opposite}: $gutter-width
+
+        @include tablet-or-larger
+          margin-#{$opposite}: 50px
+
+      .cb-text-textbox__block:before // Gradient
+        content: ''
+        @include overlay(0, 0, 0, 0) // top, bottom, left, right
+        @include gradient(to #{$opposite}, 'blue')
+        #{$opposite}: 50%
+        z-index: -1
+
+        @include tablet-or-larger
+          #{$opposite}: 20%
+
+      .cb-text-textbox__text
+        text-align: $opposite

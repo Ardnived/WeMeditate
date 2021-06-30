@@ -1,0 +1,118 @@
+@use 'tool'
+@include set($tool: media)
+
+@include block
+  .cdx-media
+    img
+      border-radius: 0.28571429rem
+
+    &__items__image
+      overflow: hidden
+      margin-bottom: 2px
+
+    &__items__alt
+      font-size: 78%
+      margin-bottom: 8px
+
+    &__items__remove
+      position: absolute
+      top: 5px
+      right: 5px
+      background: white
+      overflow: hidden
+      width: 18px !important
+      height: 18px !important
+      border-radius: 100%
+
+    &__items__remove:hover
+      color: #DB2828
+
+  .cdx-input
+    line-height: 1.3
+
+  &:not(.cdx-block--custom-focus)
+    .cdx-media__items__remove
+      display: none
+
+  @include with-option(size, wide)
+    .cdx-block
+      margin-left: -10px
+      margin-right: -10px
+
+    .cdx-input
+      padding: 0 10px
+
+  @include with-option(quantity, single)
+    .cdx-media__item:not(:first-child)
+      display: none
+
+    img
+      max-height: 300px
+      object-fit: contain
+
+    .cdx-media__item
+      position: relative
+    
+    @include with-option(position, left)
+      .cdx-media
+        padding-right: 30%
+
+      .cdx-media__items__remove
+        left: 5px
+        right: auto
+
+      img
+        object-position: left
+
+    @include with-option(position, right)
+      .cdx-media
+        padding-left: 30%
+        text-align: right
+
+      img
+        object-position: right
+
+    @include with-option(position, center)
+      .cdx-media
+        text-align: center
+
+      .cdx-input
+        max-width: 400px
+        margin-left: auto
+        margin-right: auto
+
+      @include with-option(size, wide)
+        .ui.image
+          width: 100%
+          height: 120px
+
+        img
+          width: 100%
+          height: 100%
+          object-fit: cover
+
+  @include with-option(quantity, gallery)
+    .cdx-media
+      margin: 30px 0
+      padding: 0
+      
+      &__item
+        position: relative
+        display: inline-block
+        width: 33%
+        padding: 0 2.5px
+        margin: 5px 0
+        vertical-align: top
+
+      &__items__credit
+        display: none
+
+    img
+      width: 209px
+      height: 209px
+      object-position: center
+      object-fit: cover
+
+@include type(video)
+  .uploader
+    display: none

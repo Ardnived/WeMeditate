@@ -14,6 +14,7 @@ gem 'sassc-rails' # Use SASS for stylesheets
 gem 'slim-rails' # Use Slim for views
 gem 'uglifier' # Use Uglifier as compressor for JavaScript assets
 
+gem 'webpacker' # Used to pack sass, js, and images
 gem 'rails_serve_static_assets' # Allow the heroku app to serve static files
 gem 'redis' # Use Redis for caching
 gem 'turbolinks' # Makes navigating your web application faster.

@@ -224,7 +224,7 @@ fa:
     '500': "متأسفیم، اما مشکلی پیش آمده است"
 
   javascript:
-    reading_time: "زمان مطالعه: %minutes%  دقیقه"
+    reading_time: "زمان مطالعه: %{minutes}  دقیقه"
     loading: "در حال بارگذاری..."
     popup:
       close: "ببندید (Esc)" # TODO: Translate

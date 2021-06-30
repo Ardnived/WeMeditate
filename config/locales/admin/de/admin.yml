@@ -499,12 +499,3 @@ de:
         no_languages: "Keine Sprachen"
         all_languages: "Alle Sprachen"
         other_languages: "Andere Sprachen"
-
-    javascript:      
-      email: "E-Mail"
-      message: "Nachricht"
-      drag_images_to_upload: "Ziehen Sie Bilder zum Hochladen hierher"
-      no_results: "Keine Ergebnisse gefunden..."
-      waiting_for_upload: "Warte auf %{count} Datei(en) um das Hochladen fertig zu stellen..."
-      file: "Datei"
-      files: "Dateien"

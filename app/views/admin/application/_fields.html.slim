@@ -68,8 +68,8 @@
 
 - if record.viewable? && allow.update_structure?
   = render 'admin/partials/repeatable_fields', f: f, attribute: :metatags, horizontal: true do |ff, item|
-    = ff.text_field :name, value: item[0], placeholder: translate('admin.metadata.key'), name: "#{ff.object_name}[keys][]", data: { key: 'key' }
-    = ff.text_field :value, value: item[1], placeholder: translate('admin.metadata.value'), name: "#{ff.object_name}[values][]", data: { key: 'value' }
+    = ff.text_field :name, id: nil, value: item[0], placeholder: translate('admin.metadata.key'), name: "#{ff.object_name}[keys][]", data: { key: 'key' }
+    = ff.text_field :value, id: nil, value: item[1], placeholder: translate('admin.metadata.value'), name: "#{ff.object_name}[values][]", data: { key: 'value' }
 
   - unless record.new_record?
     .field

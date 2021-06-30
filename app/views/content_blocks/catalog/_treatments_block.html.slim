@@ -1,0 +1,48 @@
+
+ruby:
+  item_ids = block[:items]
+  showImages = block[:withImages] != false
+  records = block[:type].classify.constantize.published.where(id: item_ids).all
+  return unless records.present?
+
+.content__catalog class="content__catalog--#{block[:type]}"
+  - image_sizes = '(max-width: 767px) calc(100vw - 48px), (max-width: 448px) 400px, (max-width: 1023px) 40vw, 400px'
+
+  .gradient-wrapper
+    .gradient.gradient--right.gradient--tall.gradient--fixed-height.gradient--orange
+
+  h2.content__catalog__title
+    - if block[:title]
+      = block[:title]
+    - else
+      = block[:decorations] && block[:decorations][:sidetext] && block[:decorations][:sidetext][:text]
+  .content__catalog__sidetext = render_decoration :sidetext, block, alignment: :left
+
+  .content__catalog__treatment_list.excerpt_list
+    - records.first(2).each_with_index do |treatment, index|
+      article.content__catalog__treatment.excerpt.excerpt--simple class="excerpt--#{index.even? ? 'right' : 'left'}"
+        = smart_image_tag treatment.thumbnail, '100vw', class: 'excerpt__image', alt: treatment.name
+        .excerpt__content
+          h3.excerpt__title = treatment.name
+          p.excerpt__text = treatment.excerpt
+          a.excerpt__link href=treatment_path(treatment)
+            = t('treatments.read_more')
+            .icon.icon--breadcrumb
+        .clearfix
+
+  - if records.size > 2
+    .content__catalog__loadmore.js-loadmore
+      button.button.button--box
+        = translate block[:type] == 'treatments' ? 'treatments.show_more' : 'content.show_more'
+      template
+        - records.drop(2).each_with_index do |treatment, index|
+          article.content__catalog__treatment.excerpt.excerpt--simple class="excerpt--#{index.even? ? 'right' : 'left'}"
+            = smart_image_tag treatment.thumbnail, image_sizes, class: 'excerpt__image', alt: treatment.name
+            .excerpt__content
+              h3.excerpt__title = treatment.name
+              p.excerpt__text = treatment.excerpt
+              a.excerpt__link href=treatment_path(treatment)
+                = t('treatments.read_more')
+                .icon.icon--breadcrumb
+                
+            .clearfix

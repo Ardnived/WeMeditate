@@ -1,0 +1,47 @@
+
+ruby:
+  is_gallery = block[:items].length > 1
+  classes = []
+  classes << "cb-video-media--#{is_gallery ? 'gallery' : 'single'}"
+
+- if block[:items].length > 0
+  .cb-video-media class=classes
+    .gradient-wrapper
+      = render_decoration :gradient, block, size: %i[tall long]
+
+    - if is_gallery
+      - if block[:decorations] && block[:decorations][:sidetext]
+        .cb-video-media__circle
+          = render_decoration :circle, { decorations: { circle: true } }
+        .cb-video-media__sidetext
+          = render_decoration :sidetext, block, static: true, alignment: :right
+
+      .carousel class='js-carousel' data-style='video'
+        - block[:items].each do |item|
+          figure.carousel__item class='js-carousel-item' data-gtm-label=item[:title]
+            .carousel__video.video class='js-video' data-gtm-local=item[:title] data-gtm-global="Video #{item[:id]}"
+              .video__inner
+                = vimeo_tag item[:vimeo_id]
+                .video__thumbnail
+                  - image_sizes = '(max-width: 767px) calc(100vw - 48px), (max-width: 919px) calc(100vw - 98px), (max-width: 1198px) 50vw, 548px'
+                  = vimeo_image_tag item, image_sizes, lazy: false
+                  a.video__button.video__popup data-lity=true href="https://vimeo.com/#{item[:vimeo_id]}"
+                  a.video__button
+
+            figcaption.carousel__name = item[:title]
+    - else
+      h2.cb-video-media__title = block[:decorations] && block[:decorations][:sidetext] && block[:decorations][:sidetext][:text]
+      .cb-video-media__sidetext = render_decoration :sidetext, block, alignment: :left
+
+      - item = block[:items].first
+      figure.cb-video-media__item
+        .cb-video-media__media.video class='js-video' data-title=item[:title]
+          .video__inner
+            = vimeo_tag item[:vimeo_id]
+            .video__thumbnail
+              - image_sizes = '(max-width: 708px) calc(100vw - 48px), 660px'
+              = vimeo_image_tag item, image_sizes, lazy: false
+              a.video__button.video__popup data-lity=true href="https://vimeo.com/#{item[:vimeo_id]}"
+              a.video__button
+
+        figcaption.cb-video-media__name = item[:title]

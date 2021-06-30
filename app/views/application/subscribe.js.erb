@@ -1,5 +1,5 @@
 
-Application.elements.form.map(function(form) {
+window.instances.form.map(function(form) {
   if (form.type == 'signup') {
     form.setMessage('<%= @message %>', '<%= @success ? "positive" : "negative" %>')
     form.setButtonText('<%= @success ? translate("form.button.submitted") : translate("form.button.try_again") %>')

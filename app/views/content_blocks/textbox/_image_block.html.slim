@@ -1,0 +1,61 @@
+
+ruby:
+  isWisdom = (block[:background] == 'brown')
+  isVideo = (block[:asVideo] == true)
+  classes = ["content__textbox--#{block[:position]}"]
+  classes << 'content__textbox--invert' if isWisdom || block[:color] == 'dark'
+  classes << "content__textbox--#{block[:spacing] != 'overlap' ? 'separate' : 'overlay'}" unless isWisdom
+  classes << 'content__textbox--wisdom' if isWisdom
+  classes << 'content__textbox--center' if block[:background] == 'image'
+  # classes << 'content__textbox--video' if isVideo
+  # classes << 'content__textbox--compact' if block[:compact] == true
+
+  return unless block[:image].is_a?(Hash)
+
+.content__textbox class=classes
+  - if isWisdom
+    .gradient-wrapper
+      .gradient.gradient--wisdom class="gradient--#{block[:position] == 'right' ? 'left' : 'right'}"
+  - elsif block[:background] != 'image'
+    .content__textbox__decoration.content__textbox__decoration--gradient
+      .gradient-wrapper
+        = render_decoration :gradient, block, size: %i[long]
+    
+  .content__textbox__wrapper
+    .content__textbox__decoration.content__textbox__decoration--sidetext
+      .content__textbox__sidetext
+        = render_decoration :sidetext, block, position: (block[:position] == 'right' ? :right : :left)
+
+    - if isWisdom
+      = inline_svg_tag 'content/ancient-wisdom.svg', class: 'content__textbox__graphic'
+
+    - if isVideo
+      h2.content__textbox__title = block[:title]
+
+    .content__textbox__image
+      .content__textbox__img
+        = smart_image_tag record.media_file(block[:image][:id]), block[:position] == 'center' ? '100vw' : '(max-width: 767px) calc(60vw - 48px), 50vw'
+        .content__textbox__circle
+          = render_decoration :circle, block
+
+        - if isVideo
+          - vimeo_id = block[:url].match(%r{/(\d+)/?\z})[1] rescue nil
+          - if vimeo_id.nil?
+            = content_error "Could not load invalid vimeo id '#{block[:url]}'"
+          - else
+            .content__textbox__action
+              a.content__textbox__action__button href="https://vimeo.com/#{vimeo_id}" data-lity=true target='_blank'
+              .content__textbox__action__text = block[:action]
+
+    - unless isVideo
+      .content__textbox__box_wrapper
+        .content__textbox__box class=('js-animate' if block[:color] == 'dark' && block[:background] == 'image')
+          h2.content__textbox__title = block[:title]
+          .content__textbox__text
+            = simple_format_content block[:text]
+            - if block[:action].present? && block[:url].present?
+              a.content__textbox__button.button.button--box.button--large href=block[:url] = block[:action]
+
+  .content__textbox__decoration.content__textbox__decoration--triangle
+    .content__textbox__triangle
+      = render_decoration :triangle, block

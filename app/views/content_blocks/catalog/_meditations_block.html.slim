@@ -1,0 +1,36 @@
+
+ruby:
+  item_ids = block[:items]
+  showImages = block[:withImages] != false
+  records = block[:type].classify.constantize.published.where(id: item_ids).all
+  return unless records.present?
+
+.content__catalog class="content__catalog--#{block[:type]}"
+  - if block[:title].present?
+    h2.content__catalog__header
+      = inline_svg_tag 'graphics/leaves.svg', class: 'content__catalog__header__leaf'
+      .content__catalog__header__text = block[:title]
+      = inline_svg_tag 'graphics/leaves.svg', class: 'content__catalog__header__leaf'
+
+  .gradient-wrapper
+    .gradient.gradient--right.gradient--tall.gradient--blue
+
+  - if block[:decorations] && block[:decorations][:sidetext]
+    .content__catalog__circle
+      = render_decoration :circle, { decorations: { circle: true } }
+    /h2.content__catalog__title = block[:decorations][:sidetext][:text]
+    .content__catalog__sidetext
+      = render_decoration :sidetext, block, static: records.count > 1, alignment: :right
+
+  .carousel class='js-carousel' data-style='video'
+    - records.each do |meditation|
+      figure.carousel__item class='js-carousel-item' data-gtm-label=meditation.name
+        a.carousel__video.video href=meditation_path(meditation)
+          .video__inner
+            .video__thumbnail
+              / TODO: Maybe try to find a way to re-enable lazyloading
+              - image_sizes = '(max-width: 767px) calc(100vw - 48px), (max-width: 919px) calc(100vw - 98px), (max-width: 1198px) 50vw, 548px'
+              = smart_image_tag meditation.image, image_sizes, lazy: false
+              .video__button
+
+        figcaption.carousel__name = meditation.name

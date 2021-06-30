@@ -7,8 +7,8 @@ html lang=I18n.locale
 
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag 'admin', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'admin', nonce: true, 'data-turbolinks-track': 'reload'
+    = stylesheet_packs_with_chunks_tag 'admin', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_packs_with_chunks_tag 'admin', nonce: true, 'data-turbolinks-track': 'reload'
 
   body class="admin #{controller_name} #{controller.action_name} locale--#{Globalize.locale}"
     nav id='sidebar'
@@ -44,6 +44,5 @@ html lang=I18n.locale
         = yield
 
   javascript:
-    window.translate = #{translate('admin.javascript').to_json.html_safe}
-    window.translate['content'] = #{translate('admin.content').to_json.html_safe}
+    window.translations = #{translate('admin.javascript').to_json.html_safe}
     window.locale = '#{Globalize.locale}'

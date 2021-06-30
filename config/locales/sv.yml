@@ -220,7 +220,7 @@ sv:
     '500': "Vi ber om ursäkt, men något gick fel"
 
   javascript:
-    reading_time: "%minutes% minuters läsning"
+    reading_time: "%{minutes} minuters läsning"
     loading: "Laddar..."
     popup:
       close: "Stäng (Esc)"

@@ -43,10 +43,16 @@ module Admin::ApplicationHelper
       # Loop through each block in the record, and generate a short piece of text describing that block.
       for block in blocks
         case block['type']
+        when 'paragraph'
+          if block['data']['type'] == 'header'
+            title = block['data']['text']
+            concat content_tag :li, tag.strong(title)
+          end
+
         when 'splash', 'header', 'textbox' # Bold title
           field = block['type'] == 'header' ? 'text' : 'title'
           title = block['data'][field]
-          type = translate(block['type'], scope: %i[admin content blocks])
+          type = translate(block['data']['type'], scope: [:admin, :content, :blocks, block['type']])
           word_count = block['data']['text'] ? block['data']['text'].split.size : 0
           word_count = translate('admin.content.words', count: word_count)
 
@@ -71,7 +77,7 @@ module Admin::ApplicationHelper
           concat content_tag :li, "#{type.titleize}: #{items}"
 
         when 'paragraph', 'quote' # Word count
-          type = translate(block['type'], scope: %i[admin content blocks])
+          type = translate(block['data']['type'], scope: [:admin, :content, :blocks, block['type']])
           word_count = translate('admin.content.words', count: block['data']['text'].split.size)
           concat content_tag :li, tag.i("#{type}: #{word_count}")
 
@@ -88,7 +94,7 @@ module Admin::ApplicationHelper
           concat content_tag :li, tag.i("#{type}: #{item_count}")
 
         when 'action' # Short text link
-          type = translate(block['type'], scope: %i[admin content blocks])
+          type = translate(block['data']['type'], scope: [:admin, :content, :blocks, block['type']])
           concat content_tag :li, tag.em(type) + tag.span(": [#{block['data']['text']}] → ") + tag.small(block['data']['url'])
 
         when 'whitespace' # Whitespace

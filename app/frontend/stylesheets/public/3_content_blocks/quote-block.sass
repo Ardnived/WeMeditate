@@ -1,0 +1,149 @@
+
+.content__quote
+  color: $color-text-dark
+
+// ===== CENTERED QUOTE ===== //
+// The basic kind of quote.
+.content__quote--center
+  @extend %narrow-content-width
+
+.content__quote--center .content__quote
+  &__block
+    max-width: 640px
+    text-align: center
+    font-weight: $font-medium
+    font-size: 1.6rem
+    line-height: 1.875
+    margin: 72px auto
+    clear: both
+
+    @include laptop-or-larger
+      margin-bottom: 80px
+
+    .divider--leaf-up
+      margin-bottom: 42px
+
+    .divider--leaf-down
+      margin-top: 42px
+
+  &__text
+    margin-bottom: 24px
+
+    @include laptop-or-larger
+      font-size: 2.3rem
+      line-height: 1.6
+      margin-bottom: 16px
+
+  &__credit
+    @include laptop-or-larger
+      font-size: 1.8rem
+      line-height: 1.4
+
+  &__caption
+    font-weight: $font-light
+    font-size: 1.4rem
+    line-height: 30px
+
+// ===== POEM QUOTE ===== //
+.content__quote--poem
+  @extend %narrow-content-width
+
+  @each $side in left right
+    &.content__quote--#{$side}
+      .content__quote__block
+        margin-#{$side}: 20px
+        border-#{$side}: 1px solid #AAAAA9
+        text-align: $side
+
+.content__quote--poem .content__quote
+  &__block
+    padding: 0.5em 1em
+
+  &__text
+    font-size: 1.8rem
+    line-height: 1.6
+
+  &__text > p
+    &:first-child
+      margin-top: 0
+
+    &:last-child
+      margin-bottom: 0
+
+.content__quote--poem.content__quote--center .content__quote
+  &__block
+    max-width: 400px
+    text-align: left
+
+  &__text
+    line-height: 2
+
+  &__block
+    .divider--leaf-up
+      margin-bottom: 28px
+
+    .divider--leaf-down
+      margin-top: 28px
+
+// ===== CALLOUTE QUOTE ===== //
+// This is a quote which is placed as an insert into the text.
+.content__quote--callout
+  max-width: 1050px
+  margin: auto
+  margin-top: 0 !important
+
+  .content__quote__block
+    position: relative
+    padding: 32px 0
+    padding-left: $gutter-width
+    margin-top: 15px
+    margin-bottom: 45px
+
+    @include tablet-or-larger
+      max-width: 400px
+      padding-left: 0
+
+    @include desktop
+      max-width: 360px
+
+  .content__quote__text
+    font-weight: $font-semibold
+    font-size: 1.6rem
+    line-height: 1.625
+    letter-spacing: 0.2px
+
+  .content__quote__credit,
+  .content__quote__caption
+    font-size: 1.4rem
+    line-height: 1.875
+
+  .content__quote__caption
+    font-style: italic
+
+  @each $side in left right
+    $opposite: if($side == right, left, right)
+
+    &.content__quote--#{$side}
+      .content__quote__block
+        float: $side
+        text-align: $side
+        padding-#{$side}: $gutter-width
+
+        @include mobile
+          padding-#{$opposite}: $gutter-width
+
+        @include tablet-or-larger
+          margin-#{$opposite}: 50px
+
+      .content__quote__block:before // Gradient
+        content: ''
+        @include overlay(0, 0, 0, 0) // top, bottom, left, right
+        @include gradient(to #{$opposite}, 'blue')
+        #{$opposite}: 50%
+        z-index: -1
+
+        @include tablet-or-larger
+          #{$opposite}: 20%
+
+      .content__quote__text
+        text-align: $opposite

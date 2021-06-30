@@ -20,8 +20,8 @@ html lang=locale
 
     = yield :head if content_for? :head
 
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', nonce: true, 'data-turbolinks-track': 'reload'
+    = stylesheet_packs_with_chunks_tag 'public', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_packs_with_chunks_tag 'public', nonce: true, 'data-turbolinks-track': 'reload'
     = render_structured_data
 
   body id='top' data-gtm-context=(controller_name == 'static_pages' ? @static_page.role : controller_name) data-gtm-page=action_name
@@ -31,4 +31,5 @@ html lang=locale
     = render 'layouts/partials/photoswipe', cached: true
 
   javascript:
-    window.translate = #{translate('javascript').to_json.html_safe}
+    window.translations = #{translate('javascript').to_json.html_safe}
+    window.locale = '#{Globalize.locale}'

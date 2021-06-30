@@ -1,9 +1,11 @@
 env:
   browser: true
   es6: true
-extends: 'eslint:recommended'
+  amd: true
+extends: eslint:recommended
 parserOptions:
   ecmaVersion: 2017
+  sourceType: module
 rules:
   indent:
     - error

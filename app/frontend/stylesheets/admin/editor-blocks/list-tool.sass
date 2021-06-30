@@ -1,0 +1,46 @@
+@use 'tool'
+@include set($tool: list)
+
+@include block
+  .cdx-list
+    padding-left: 20px
+    outline: none
+
+    &__item
+      padding: 5.5px 0 5.5px 3px
+      line-height: 1.2em
+
+@include type(text)
+  @include with-option(style, unordered)
+    ul
+      list-style-type: disc
+
+  @include with-option(style, ordered)
+    ul
+      list-style-type: decimal
+
+  @include with-option(style, leaf)
+    ul
+      list-style-type: circle
+      list-style-type: image('graphics/leaf.svg')
+
+@include type(contents)
+  .cdx-block
+    width: 100%
+    margin: 10px 0
+    padding: 0
+    background: repeating-linear-gradient(45deg, transparent, transparent 10px, #eee 10px, #eee 20px)
+    
+    text-align: center
+    text-transform: uppercase
+    font-weight: bold
+    color: #bbb
+    font-size: 20px
+    letter-spacing: 1px
+
+    &::before
+      content: attr(data-contents)
+      line-height: 170px
+
+    li
+      display: none

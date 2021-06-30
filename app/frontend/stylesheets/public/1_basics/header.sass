@@ -1,0 +1,680 @@
+@import "../../mixins/*"
+
+/* HEADER
+  Styling for the site-wide header that is used at the very top of each page.
+  */
+
+.header
+  position: relative
+  z-index: $z-header
+  font-weight: $font-medium
+
+.header *
+  transition: all 0.2s ease
+
+.header__banner a,
+.header__navigation a
+  color: $color-header
+  font-weight: $font-medium
+  text-decoration: none
+
+  &:hover
+    opacity: 1
+
+.header__container
+  background: white
+  height: auto
+  z-index: $z-header
+
+
+// ===== BANNER ===== //
+// This is the decorative part of the header which is above the navigation bar
+.header__banner
+  display: flex
+  justify-content: space-between
+  align-items: flex-end
+
+  position: relative
+  font-size: 0.875em
+  text-align: center
+
+  height: 138px
+  padding-bottom: 38px
+  border-bottom: 1px solid $color-header-light
+
+  > a
+    text-decoration: none
+    font-size: 1.4rem
+    line-height: 1.15
+    letter-spacing: 1px
+    z-index: 1
+
+.header__logo
+  width: 70px
+  text-align: left
+
+  > svg
+    height: 13px
+    width: auto
+    display: block
+    margin-bottom: 4px
+
+  > span
+    display: block
+    font-weight: $font-medium
+    font-size: 1.4rem
+    line-height: 1.1
+    letter-spacing: 1px
+
+  path
+    stroke: $color-header
+    stroke-width: 0.6px
+
+.header__action
+  max-width: 90px
+  text-align: right
+
+.header__burger
+  cursor: pointer
+
+  > svg
+    height: 100%
+
+.header__illustration
+  position: absolute
+  left: 0
+  right: 0
+  top: 15px
+  z-index: 0
+
+  > svg
+    height: 100px
+    max-width: 65%
+
+  path
+    stroke: $color-header
+
+
+// ===== NAVIGATION BAR ===== //
+// This is the bar with the core navigation links
+.header__navigation
+  display: flex
+  justify-content: space-around
+  align-items: center
+  position: relative
+
+  font-size: 1em
+  border-bottom: 1px solid $color-header-light
+  z-index: 1
+
+  @include laptop-or-larger
+    padding: 0 85px
+
+  &__item
+    width: 25%
+    text-align: center
+
+    &:not(:hover):not(:focus) > .header__dropdown:not(:hover)
+      max-height: 0
+
+  &__link
+    color: $color-text-dark
+    padding: 0 2.6rem
+    line-height: 3.5rem
+    white-space: nowrap
+    display: inline-block
+    position: relative
+
+    // Creates a background behind the link which can be animated on hover.
+    &:before
+      background: transparentize(#F6F6F6, 0.6)
+      content: ''
+      z-index: -1
+      transition: all 1s ease
+      @include overlay(0, 0, 51%, 51%)
+
+    &:hover
+      color: $color-text-darkest
+
+  // If the link is hovered or active then the background should be full.
+  .header__navigation__link--active,
+  .header__navigation__item:hover .header__navigation__link
+    &:before
+      left: 0
+      right: 0
+
+
+// ===== DESKTOP NAVIGATION BAR ===== //
+// Styling variations for the desktop version of the navigation bar
+.header__wrapper--desktop
+  @extend %wide-content-width
+
+  @include tablet-or-smaller
+    display: none !important
+
+.header__wrapper--desktop .header__navigation
+  &__logo,
+  &__marker
+    position: absolute
+    text-align: center
+    top: 0
+    bottom: 0
+    opacity: 0
+
+  &__logo
+    width: 50px
+    padding: 9px
+    left: 0
+
+    > svg
+      width: 24.5px
+      height: 18px
+
+    path
+      fill: $color-text-dark
+
+  &__marker
+    width: 40px
+    padding: 6.2px 0
+    right: 0
+
+    > svg
+      width: 19px
+      height: 24px
+
+    path
+      fill: $color-text-normal
+
+// ===== MOBILE NAVIGATION BAR ===== //
+// Styling variations for the mobile version of the navigation bar
+.header__wrapper--mobile
+  @extend %wide-content-width
+
+  @include laptop-or-larger
+    display: none !important
+
+.header__wrapper--mobile .header__navigation
+  height: 70px
+  justify-content: space-between
+
+  path
+    fill: $color-graphic-dark
+
+  &__logo path
+    fill: $color-graphic-darker
+
+  &__logo > svg
+    height: 30px
+
+  &__burger > svg
+    height: 30px
+    width: 30px
+
+
+// ===== DROPDOWN ===== //
+// Some items in the navigation bar may have a dropdown box with more links and featured articles.
+.header__dropdown
+  @include overlay(102%, auto, 0, 0)
+  position: absolute
+  background: $background-gray
+  padding: 0
+  z-index: 10
+  transition: max-height 0.5s cubic-bezier(.02, .01, .47, 1)
+  transition-delay: 0.3s
+  overflow: hidden
+  max-height: 500px
+  text-align: left
+
+  // This creates the background pattern for the dropdown
+  &:before
+    content: ''
+    position: absolute
+    top: 0
+    right: 0
+    height: 100%
+    min-height: 380px
+    width: 1250px
+    max-width: 90%
+    background: image('header/menu-background.png') no-repeat top right
+    background-size: 100% 100%
+
+  &__title,
+  &__content
+    padding-left: 80px
+    padding-right: 20px
+
+    @include desktop
+      padding-left: 92px
+
+    @include tablet
+      padding-left: 30px
+
+  &__title
+    font-size: 1.5em
+    color: $color-text-dark
+    border-bottom: 1px solid $color-graphic-normal
+    line-height: 58px
+    margin: 0
+    position: relative
+
+  &__content
+    display: flex
+    align-items: flex-start
+    justify-content: space-between
+    position: relative
+    padding-bottom: 18px
+
+  &__list
+    padding: 0
+    margin: 33px 0 20px
+    list-style: none
+    flex-grow: 1
+
+  &__item
+    display: block
+    margin-bottom: 10px
+    font-weight: $font-medium
+    font-size: 1.8rem
+    line-height: 1.4
+    color: $color-text-normal
+
+    &:hover
+      color: $color-text-blue
+
+// The featured articles that may be included inside a dropdown
+.header__featured-sizer
+  position: relative
+  padding-bottom: 18.75%
+  width: 720px
+
+.header__featured-wrapper
+  @include overlay
+  display: flex
+  flex: 1 1 auto
+
+.header__featured
+  margin-left: 18px
+  max-height: 290px
+  width: 50%
+
+  &__title
+    position: absolute
+    bottom: 100%
+    margin-bottom: 1em
+    font-size: 0.75em
+    line-height: 1.75em
+
+  &__link
+    position: relative
+    display: flex
+    justify-content: center
+    align-items: flex-start
+    overflow: hidden
+    background-position: center
+    font-weight: $font-semibold
+    font-size: 1.8rem
+    height: 100%
+
+    &:not(:hover) > .header__featured__overlay
+      opacity: 0
+
+  &__image
+    width: 100%
+    height: 100%
+    display: block
+
+    img
+      object-fit: fill
+
+  &__overlay
+    @include overlay(0, 0, 0, 0)
+    transition: all 0.5s ease
+    background-color: rgba(0,0,0,0.5)
+    color: white
+    text-align: center
+
+    display: flex
+    align-items: center
+    justify-content: center
+
+    padding: 0 15%
+
+    &:after
+      content: ''
+      display: block
+      position: absolute
+      bottom: 16px
+      left: 50%
+      margin-left: -36px
+
+      width: 72px
+      height: 16px
+
+      background: image('graphics/lotus-decoration.svg') center no-repeat
+
+
+// ===== SCROLLSPY ===== //
+// The progress bar that appears just under the header.
+.header__scrollspy
+  @extend %wide-content-width
+  display: none
+  width: 100%
+  background: white
+
+  &__progress
+    height: $scrollspy-width
+    background-color: $color-scrollspy
+    width: 0
+    transition: width 0.1s linear
+
+// ===== NOTICES ===== //
+.header__notice
+  @extend %wide-content-width
+  position: fixed
+  left: 0
+  right: 0
+  bottom: 0
+
+  @include mobile
+    max-width: none
+    padding: 0
+
+  @include tablet
+    max-width: none
+    padding: 0
+
+  &__text
+    background: transparentize(white, 0.05)
+    box-shadow: 0px 3px 15px transparentize(black, 0.8)
+    padding: 8px 12px
+    border-bottom: 1px solid $color-graphic-normal
+    font-size: 1.4rem
+    line-height: 20px
+
+    a
+      margin-left: 4px
+
+  &__close
+    @extend %close-icon
+    float: right
+    width: 20px
+    height: 20px
+
+.header__notice--cookie
+  bottom: -100px
+
+.header__notice--preview
+  bottom: -2px
+
+  .header__notice__text
+    font-weight: $font-bold
+    text-align: center
+    border: 2px solid $color-box-orange
+
+
+// ===== BREADCRUMBS ===== //
+// The page breadcrumbs that appear just under the header.
+.header__breadcrumbs-wrapper
+  position: absolute
+  width: 100%
+
+.header__breadcrumbs
+  @extend %wide-content-width
+
+  font-size: 1.2rem
+  line-height: 1.6667
+  margin-top: 18px
+
+  @include mobile
+    display: none
+
+  &__item
+    display: inline-block
+
+    &:not([href])
+      color: black
+
+    &:not(:last-child)::after
+      font-family: $font-icons !important
+      content: $icon-breadcrumb
+      margin: 0 0.9em
+      font-size: 0.5em
+
+.header__breadcrumbs--invert
+  .header__breadcrumbs__item
+    color: $color-text-lighter
+
+    &:not([href])
+      color: $color-text-light
+
+
+// ===== MOBILE MENU ===== //
+// This is the overlay menu that can be opened on mobile versions of the header
+.header__menu
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  text-align: center
+
+  position: fixed
+  top: 0
+  bottom: 0
+  left: 0
+  right: 0
+
+  height: 0
+  overflow: hidden
+  transition: height 0.5s ease
+  background: $background-white
+
+  &__item
+    width: 100%
+
+  &__item--active .header__menu__link
+    color: $color-text-darkest
+
+  &__link
+    width: 100%
+    font-size: 1.8rem
+    line-height: 4
+    transition: all 0.3s ease
+    color: $color-header-light
+
+// The "burger" button, is the button that opens and closes the menu.
+.header__navigation__burger
+  @extend %close-icon
+
+  svg
+    opacity: 1
+
+  &:before, &:after
+    opacity: 0
+    transform: rotateZ(0)
+
+
+// ===== MOBILE SUBMENU ===== //
+// Some items in the mobile menu may open up to show more links.
+// This corresponds to the dropdown which is used on the desktop version of the menu.
+.header__menu__item--submenu
+  .header__menu__link
+    padding-right: 25px
+    margin-right: -25px
+    position: relative
+
+  .header__menu__link:after
+    content: ''
+    position: absolute
+    display: inline-block
+    right: 0
+    top: 50%
+
+    width: 8px
+    height: 8px
+
+    border-left: 1px solid $color-text-normal
+    border-bottom: 1px solid $color-text-normal
+    transform: rotate(-45deg)
+    margin-top: -7px
+
+  .header__menu__link:hover
+    @include laptop-or-larger
+      color: $color-text-light
+
+.header__menu__submenu
+  max-height: 0
+  overflow: hidden
+  margin: 0
+  padding: 0
+  list-style: none
+
+.header__menu__submenu_item
+  line-height: 45px
+
+  &:hover
+    color: $color-text-normal
+
+// The expand class signals that the submenu is open.
+.header__menu__item--expand
+  @include gradient(to right, blue)
+
+  .header__menu__submenu
+    max-height: 300px
+    margin-bottom: 1em
+
+  .header__menu__submenu_item:after
+    transform: rotate(135deg)
+    margin-top: -4px
+
+
+// ===== MOBILE SOCIAL LINKS ===== //
+.header__social
+  margin-top: 15%
+  margin-bottom: -15%
+
+  &__title
+    font-size: 2rem
+    line-height: 1.25
+    margin-bottom: 27px
+
+  &__links
+    flex: 1 0 12%
+
+  &__link
+    font-size: 2.6rem
+    color: $color-text-dark
+    margin: 0 15px
+
+
+// ===== SHOW MOBILE MENU TWEAKS ===== //
+// When the mobile menu is open, some other parts of the header need to be adjusted.
+.header--show-menu .header
+  &__menu
+    height: 100%
+
+    @include laptop-or-larger
+      display: none
+
+  &__navigation
+    border-bottom: 1px solid transparent
+
+  &__navigation__burger
+    svg
+      opacity: 0
+
+    &:before, &:after
+      opacity: 1
+
+    &:before
+      transform: rotateZ(0.7854rad)
+
+    &:after
+      transform: rotateZ(-0.7854rad)
+
+
+// ===== MINIMAL HEADER ===== //
+.header--minimal
+  .header__wrapper--mobile
+    padding: 0 13px
+
+    .header__navigation
+      height: 50px
+
+// ===== STICKY HEADER ===== //
+// When the user scrolls down the page, the header should collapse and attach itself to the top of the page (triggered using javascript)
+// When that happens the header is said to be "sticky", and the following CSS rules are applied
+.header--sticky
+  .header__wrapper--mobile
+    padding: 0 13px
+
+    .header__navigation
+      height: 50px
+
+  .header
+    &__banner,
+    &__breadcrumbs
+      display: none !important
+
+    &__container
+      position: fixed
+      top: 0
+      left: 0
+      right: 0
+
+    &__navigation__logo,
+    &__navigation__marker
+      opacity: 1
+
+  .header__scrollspy
+    display: block
+
+
+// ===== INVERSE HEADER ===== //
+// Some pages use a background image at the top of the page
+// In such cases the header needs to be bright on a dark background.
+.header--invert:not(.header--show-menu) .header
+  &__container,
+  &__scrollspy
+    background: none
+
+  &__banner a,
+  &__navigation a:not(.header__dropdown__item)
+    color: $color-text-inverse
+
+  &__navigation__link:before
+    background: transparentize(white, 0.6)
+
+  &__banner,
+  &__navigation
+    border-color: $color-text-inverse
+
+  &__navigation__burger path,
+  &__logo path,
+  &__illustration path
+    stroke: $color-text-inverse
+
+  &__navigation__logo path,
+  &__navigation__marker path
+    fill: $color-text-inverse
+
+  &__breadcrumbs__item
+    color: $color-text-inverse
+
+    &[href]
+      opacity: 0.7
+
+    &[href]:hover
+      opacity: 0.9
+
+// ===== OVERLAY TWEAKS ===== //
+// This causes the header to hover over the page.
+.header--overlay
+  position: absolute
+  width: 100%
+
+  .header__banner
+    padding-bottom: 76px
+    height: 198px
+
+  .header__illustration
+    top: 40px

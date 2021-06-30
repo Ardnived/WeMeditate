@@ -4,7 +4,7 @@ main
     .content = render_content @static_page
 
   .inspiration
-    #categories
+    #categories-menu
       .inspiration__filters.button_group.button_group--centered
         a.inspiration__filters__item.button.button--filled.js-filter-all class="#{'button--active' if @category.nil?}" href=categories_path data=gtm_label('articles.show_all')
           = t('articles.show_all')

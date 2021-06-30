@@ -58,8 +58,8 @@ module ImageHelper
     # Generate the srcset for both the webp, and fallback versions of the image.
     # This srcset will include every responsive image version available.
     STATIC_IMAGE_VERSIONS[path].each do |name, width|
-      srcset << "#{path_to_image("#{path}-#{name}.#{extension}")} #{width}w"
-      webp_srcset << "#{path_to_image("#{path}-#{name}.webp")} #{width}w"
+      srcset << "#{asset_pack_path("media/images/#{path}-#{name}.#{extension}")} #{width}w"
+      webp_srcset << "#{asset_pack_path("media/images/#{path}-#{name}.webp")} #{width}w"
     end
 
     # Get the first value of the srcset to be our default src
@@ -108,6 +108,10 @@ module ImageHelper
         concat tag.img srcset: srcset, sizes: sizes, **args
       end
     end
+  end
+
+  def inline_svg_tag src, **attrs
+    inline_svg_pack_tag "media/images/#{src}", **attrs
   end
 
 end

@@ -1,5 +1,5 @@
 
 var items = $('<%=j render @meditations %>')
-var loadmore = Application.elements['loadmore'][<%= params[:loadmore] %>]
+var loadmore = window.instances.loadmore[<%= params[:loadmore] %>]
 loadmore.addContent(items)
 loadmore.setLoadMoreUrl('<%= @loadmore_url %>')

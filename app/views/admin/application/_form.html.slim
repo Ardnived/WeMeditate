@@ -61,7 +61,5 @@
     - if record.is_a?(User) && allow.create? && record.pending_invitation?
       button.ui.basic.primary.button type='submit' name='reinvite' value='true'
         = translate 'admin.action.simple.reinvite'
-      
-    div#upload-loader style='display: none'
-      i.notched.circle.loading.icon
-      span
+
+    = render 'uploader', endpoint: polymorphic_admin_path([:admin, @record, MediaFile]) unless @record.new_record?

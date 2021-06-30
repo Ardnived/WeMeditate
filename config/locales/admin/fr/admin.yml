@@ -497,12 +497,3 @@ fr:
       locale:
         all_languages: "Toutes les Langues"
         other_languages: "Autres Langues"
-
-    javascript:      
-      email: "Adresse mail"
-      message: "Message"
-      drag_images_to_upload: "Faites glisser les images ici pour les télécharger"
-      no_results: "Aucun résultat trouvé..."
-      waiting_for_upload: "En attente de %{count} fichier(s) pour terminer le téléchargement..."
-      file: "Fichier"
-      files: "Fichiers"

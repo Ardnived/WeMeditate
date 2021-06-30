@@ -1,0 +1,9 @@
+
+.cb-accordion-layout
+  .cb-accordion-layout__accordion class='js-accordion'
+    - block[:items].each do |item|
+      article.cb-accordion-layout__item
+        h3.cb-accordion-layout__title class='js-accordion-title'
+          = item[:title]
+        .cb-accordion-layout__text class='js-accordion-text'
+          = simple_format_content item[:text]

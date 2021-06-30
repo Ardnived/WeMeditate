@@ -1,0 +1,59 @@
+
+$item-padding: 15px
+
+.cb-accordion-layout
+  @extend %narrow-content-width
+
+.cb-accordion-layout__item
+  @include tablet-or-larger
+    padding-left: $item-padding
+    padding-right: $item-padding
+
+  &:not(:last-child)
+    border-bottom: 1px solid $color-graphic-normal
+
+.cb-accordion-layout__title
+  margin-bottom: 16px
+
+  color: $color-text-dark
+  font-weight: $font-semibold
+  font-size: 2.2rem
+  line-height: 1.41
+  letter-spacing: 0.41px
+
+  position: relative
+  cursor: pointer
+
+.cb-accordion-layout__title:after
+  font-family: $font-icons !important
+  content: $icon-arrow-left
+  position: absolute
+  right: 0
+  transform: rotate(90deg)
+  transition: transform 0.3s 
+
+.cb-accordion-layout__text
+  font-size: 1.6rem
+  line-height: 1.875
+  letter-spacing: 0.18px
+  margin-top: 0.5em
+  margin-bottom: 0.5em
+  transition: max-height 0.5s ease
+  overflow: auto
+
+  @include laptop
+    font-size: 1.5rem
+
+.cb-accordion-layout__loadmore
+  text-align: center
+  margin-top: 30px
+
+  @include tablet-or-larger
+    margin-top: 50px
+
+.cb-accordion-layout__item.closed
+  .cb-accordion-layout__title:after
+    transform: rotate(-90deg)
+
+  .cb-accordion-layout__text
+    max-height: 0 !important

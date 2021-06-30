@@ -224,7 +224,7 @@ es:
     '500': "Lo sentimos, algo salió mal"
 
   javascript:
-    reading_time: "%minutes% minutos de lectura"
+    reading_time: "%{minutes} minutos de lectura"
     loading: "Cargando..."
     popup:
       close: "Cerrar (Esc)"

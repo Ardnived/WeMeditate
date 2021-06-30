@@ -224,7 +224,7 @@ nl:
     '500': "Het spijt ons, maar er is iets misgegaan."
 
   javascript:
-    reading_time: "leestijd: %minutes% minu(u)t(en)"
+    reading_time: "leestijd: %{minutes} minu(u)t(en)"
     loading: "Laden..."
     popup:
       close: "Sluiten (Esc)"

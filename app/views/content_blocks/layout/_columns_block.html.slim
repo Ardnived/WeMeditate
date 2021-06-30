@@ -1,0 +1,13 @@
+
+.cb-columns-layout
+  .cb-columns-layout__columns class='js-carousel' data-style='columns'
+    - block[:items].first(3).each do |item|
+      article.cb-columns-layout__item class='js-carousel-item' data-gtm-label=item[:title] 
+        - if item[:image]
+          - image_sizes = '(max-width: 767px) calc(100vw - 48px), (max-width: 919px) calc(34vw - 248px), (max-width: 1198px) calc(34vw - 108px), 324px'
+          = smart_image_tag record.media_file(item[:image][:id]), image_sizes, lazy: false, class: 'cb-columns-layout__image'
+        h3.cb-columns-layout__title class='js-carousel-title'
+          = item[:title]
+        .cb-columns-layout__text
+          = simple_format_content item[:text]
+

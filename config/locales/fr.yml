@@ -235,7 +235,7 @@ fr:
     '500': "Nous sommes désolés, une erreur s'est produite"
 
   javascript:
-    reading_time: "%minutes% minutes de lecture"
+    reading_time: "%{minutes} minutes de lecture"
     loading: "Chargement en cours..."
     popup:
       close: "Fermer (Esc)"

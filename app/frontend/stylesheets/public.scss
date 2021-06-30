@@ -1,0 +1,15 @@
+@import 'normalize.css';
+
+$slick-font-path: "~slick-carousel/slick/fonts/";
+$slick-loader-path: "~slick-carousel/slick/";
+@import '~slick-carousel/slick/slick';
+@import '~slick-carousel/slick/slick-theme';
+
+$pswp__assets-path: '~photoswipe/src/css/default-skin/';
+@import '~photoswipe/src/css/main';
+@import '~photoswipe/src/css/default-skin/default-skin';
+
+@import '~lity/dist/lity';
+
+@import 'mixins/*.sass';
+@import 'public/**/*.sass';

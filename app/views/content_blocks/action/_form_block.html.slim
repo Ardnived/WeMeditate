@@ -1,0 +1,46 @@
+
+ruby:
+  url = (block[:form] == 'contact' ? contact_path : subscribe_path)
+  classes = ['cb-form-action', 'js-form']
+  classes << "cb-form-action--#{block[:format]}"
+  classes << "cb-form-action--#{block[:spacing]}"
+
+= form_tag url, class: classes, remote: true do
+  .anchor id='signup'
+  .divider.divider--leaf.divider--leaf-only.divider--leaf-up
+
+  .cb-form-action__content
+    h3.cb-form-action__title = block[:title]
+    .cb-form-action__subtitle = block[:subtitle]
+    .cb-form-action__description = block[:text]
+    .cb-form-action__fields
+      .cb-form-action__message
+      = fields_for block[:form] do |f|
+        = f.email_field :email_address, placeholder: t('form.input.email')
+
+        - if block[:form] == 'contact'
+          = f.text_area :message, placeholder: t('form.input.message'), rows: 5
+          = f.hidden_field :gobbledigook
+          = recaptcha_tags unless Rails.env.development?
+        - elsif block[:form] == 'signup'
+          = f.hidden_field :list_id, value: block[:list_id]
+
+        - if translate(block[:form], scope: 'form.input.privacy').present?
+          .cb-form-action__privacy
+            = translate(block[:form], scope: 'form.input.privacy')
+            a href=static_page_path_for(:privacy) target='_blank' = translate 'form.input.privacy.learn_more'
+
+    .cb-form-action__buttons
+      button.button.button--box = block[:action]
+
+      - if block[:form] == 'signup' && block[:title] == 'Не пропусти!'
+        br
+        a.button.button--icon.button--box.button--colored href='https://taplink.cc/link/29656052.c68a3b/telegram/' style='background: #0088cc'
+          .icon.icon--telegram
+          .button__text Подписаться в Телеграмм
+        br
+        a.button.button--icon.button--box.button--colored href='https://vk.com/app6258612_-194521438#lists/5ec4dbc6f450b927aea43d50/subscribe' style='background: #45668e'
+          .icon.icon--vk
+          .button__text Подписаться ВКонтакте
+
+  .divider.divider--leaf.divider--leaf-only.divider--leaf-down

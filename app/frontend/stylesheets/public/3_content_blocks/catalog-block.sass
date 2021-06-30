@@ -1,0 +1,132 @@
+
+.content__catalog
+  @extend %wide-content-width
+  position: relative
+
+.content__catalog__sidetext
+  display: none
+
+  @include laptop-or-larger
+    position: relative
+    display: block
+
+.content__catalog__loadmore
+  text-align: center
+  margin-top: 80px
+
+  @include tablet
+    margin-bottom: 120px
+
+  @include laptop-or-larger
+    margin-bottom: 200px
+
+// ===== TITLE ===== //
+.content__catalog__title
+  font-weight: $font-bold
+  font-size: 2.4rem
+  line-height: 1.25
+  letter-spacing: 0.25px
+
+  @include tablet-or-larger
+    font-size: 3rem
+
+  @include laptop-or-larger
+    display: none
+
+.content__catalog__header
+  text-align: center
+  margin-top: 85px
+  margin-bottom: 52px
+
+  font-weight: $font-bold
+  font-size: 2.8rem
+  line-height: 65px
+  letter-spacing: 1px
+
+  &__text
+    display: inline-block
+    vertical-align: text-bottom
+    padding: 0 15px
+    font-size: 3.5rem
+
+  &__leaf
+    width: 1.7217em
+
+    &:first-child
+      transform: rotate(90deg) scaleX(-1) scaleY(-1)
+
+    &:last-child
+      transform: rotate(-90deg) scaleY(-1)
+
+    path
+      fill: $color-graphic-dark
+
+// ===== ARTICLES LINK GRID ===== //
+.content__catalog__article
+  padding: 0
+  padding-bottom: 75px
+
+  @include tablet-or-larger
+    padding-left: $gutter-width / 2
+    padding-right: $gutter-width / 2
+
+  @include laptop-or-larger
+    min-height: 100px
+    padding-right: 40px
+    padding-bottom: 40px
+
+  .content__catalog__media
+    height: 0
+    padding-top: 66.6666%
+    position: relative
+
+  .content__catalog__media picture
+    @include overlay
+
+  .content__catalog__media img
+    width: 100%
+    height: 100%
+
+.content__catalog__article_grid--centered
+  @include tablet-or-larger
+    display: flex
+    flex-direction: row
+    justify-content: center
+
+    .content__catalog__article
+      padding: 0 20px
+      width: 50%
+      max-width: 400px
+
+
+// ===== TREATMENTS LINK LIST ===== //
+.content__catalog__treatment_list
+  margin-top: 35px
+
+  @include tablet
+    margin-top: 80px
+
+  @include laptop-or-larger
+    margin-top: 150px
+
+
+// ===== MEDITATIONS LINK LIST ===== //
+.content__catalog--meditations
+  .content__catalog__circle
+    position: absolute
+    top: -64px
+    right: 40px
+    transform: translateX(50%)
+    z-index: -1
+    zoom: 0.85
+
+    @include tablet-or-larger
+      display: none
+
+  .content__catalog__sidetext
+    display: block !important
+
+  // TODO: This reference to .gradient and .circle shouldn't be allowed.
+  .gradient, .circle
+    @include tablet-or-smaller
+      display: block

@@ -1,0 +1,25 @@
+@use 'tool'
+@include set($tool: paragraph)
+
+@include block
+  &.cdx-block--custom-focus
+    index: 0
+
+  @for $level from 1 through 6
+    @include on-option(level, "h#{$level}")
+      .icon::after
+        content: '#{$level}'
+        font-weight: bold
+
+@include type(header)
+  @include on-field(text)
+    font-size: 1.8rem
+    padding: 0.5em 0
+    margin: 0
+    line-height: 1.25em
+    outline: none
+
+  @for $level from 1 through 6
+    @include with-option(level, "h#{$level}")
+      @include on-field(text)
+        font-size: 1.8rem * (1 - (($level - 2) * 0.125))

@@ -1,0 +1,111 @@
+
+$image-height: 80vh
+$gradient-padding: 150px
+
+// ===== CONTENT ===== //
+.content__textbox--video .content__textbox
+  &__image
+    position: static
+    padding-left: 0 !important
+    padding-bottom: $gradient-padding
+
+  &__img
+    position: relative
+    padding-top: 90%
+    height: auto
+    width: 60%
+
+    @include tablet-or-larger
+      padding-top: 60%
+      width: 40%
+
+  &__img img
+    @include overlay
+    width: 100%
+    height: 100%
+
+  &__title
+    @include tablet-or-larger
+      position: absolute
+      left: 70%
+      top: 8%
+      transform: translateX(-50%)
+
+      width: 30%
+      max-width: 380px
+      text-align: center
+      font-size: 3rem
+
+      &:before, &:after
+        content: ''
+        background-image: image('graphics/leaves.svg')
+        background-repeat: no-repeat
+        background-position: center
+        width: 30px
+        height: 30px
+        display: block
+        margin: 30px auto
+
+      &:after
+        transform: rotate(180deg)
+
+// ===== VIDEO ACTION ===== //
+.content__textbox--video .content__textbox__action
+  position: absolute
+  left: 100%
+  right: 100%
+
+  margin-left: -50px
+  margin-top: -50px
+
+  @include tablet-or-larger
+    margin-left: -85px
+    margin-top: -85px
+
+  &:before
+    // Background behind the action area
+    content: ''
+    position: absolute
+    top: -100px
+    bottom: -100px
+    left: 50%
+    width: 100vw
+    transform: translateX(-50%)
+    margin-left: -$gutter-width
+    z-index: -1
+
+  &__button
+    @include video-button
+    border-color: white
+
+    @include tablet-or-larger
+      width: 170px
+      height: 170px
+      padding: 32px
+      margin-right: 12px
+
+  &__text
+    font-weight: $font-bold
+
+    @include mobile
+      text-align: center
+      width: 100px
+      font-size: 1.8rem
+
+    @include tablet-or-larger
+      line-height: 170px
+      white-space: nowrap
+
+// ===== ALIGNED ===== //
+.content__textbox--video.content__textbox
+  @each $side in left right
+    $opposite: if($side == right, left, right)
+
+    &--#{$side}
+      .content__textbox__action:before
+        @include gradient(to #{$opposite}, 'gray')
+
+      .content__textbox__action__button
+        @include tablet-or-larger
+          float: $opposite
+          margin-#{$opposite}: 10px

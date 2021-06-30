@@ -1,0 +1,18 @@
+
+.content__action
+  @extend %wide-content-width
+  text-align: center
+
+.content__action--leaves
+  &:before, &:after
+    content: ''
+    background-image: image('graphics/leaves.svg')
+    background-repeat: no-repeat
+    background-position: center
+    width: 30px
+    height: 30px
+    display: block
+    margin: 30px auto
+
+  &:after
+    transform: rotate(180deg)

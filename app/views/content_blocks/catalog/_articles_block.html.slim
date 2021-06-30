@@ -1,0 +1,46 @@
+
+ruby:
+  item_ids = block[:items]
+  showImages = block[:withImages] != false
+  records = block[:type].classify.constantize.published.where(id: item_ids).all
+  return unless records.present?
+
+.content__catalog class="content__catalog--#{block[:type]}"
+  - if block[:title].present?
+    h2.content__catalog__header
+      = inline_svg_tag 'graphics/leaves.svg', class: 'content__catalog__header__leaf'
+      .content__catalog__header__text = block[:title]
+      = inline_svg_tag 'graphics/leaves.svg', class: 'content__catalog__header__leaf'
+
+  - image_sizes = '(max-width: 767px) calc(100vw - 48px), 360px'
+
+  .content__catalog__sidetext = render_decoration :sidetext, block, alignment: :left
+
+  .content__catalog__article_grid data-max-columns=3 class=(records.length < 3 ? 'content__catalog__article_grid--centered' : 'js-grid')
+    - records.first(3).each do |record|
+      article.preview.content__catalog__article
+        - if showImages
+          a.content__catalog__media.preview__media href=polymorphic_path(record)
+            = smart_image_tag record.thumbnail, image_sizes, lazy: false, class: 'preview__media__thumbnail', alt: record.name
+
+        a.preview__title href=polymorphic_path(record)
+          = record.name
+        p.preview__text = record.excerpt
+        .preview__meta
+          a.preview__meta__link href=polymorphic_path(record)
+            = t('articles.read_more')
+            .icon.icon--breadcrumb
+
+  - if records.size > 3
+    .content__catalog__loadmore.js-loadmore
+      button.button.button--box
+        = translate 'content.show_more'
+      template
+        - records.drop(3).each do |record|
+          article.preview.content__catalog__article
+            h3.preview__title = record.name
+            p.preview__text = record.excerpt
+            .preview__meta
+              a.preview__meta__link href=polymorphic_path(record)
+                = t('articles.read_more')
+                .icon.icon--breadcrumb

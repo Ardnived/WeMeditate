@@ -1,0 +1,30 @@
+
+ruby:
+  alignment = %w[left right center].include?(block[:alignment]) ? block[:alignment] : 'center'
+  floating = %w[left right].include?(alignment) && block[:style] == 'quote'
+  classes = []
+  classes << "cb-text-textbox--#{alignment}"
+  classes << 'cb-text-textbox--floating' if floating
+  classes << "cb-text-textbox--#{block[:style]}"
+
+.cb-text-textbox class=classes
+  blockquote.cb-text-textbox__block
+    - if alignment == 'center'
+      .divider.divider--leaf.divider--leaf-up
+
+    - if block[:style] == 'poem'
+      - if block[:title].present?
+        .cb-text-textbox__title = block[:title]
+      - if block[:subtitle].present?
+        .cb-text-textbox__caption = block[:subtitle]
+
+    .cb-text-textbox__text = simple_format block[:text]
+
+    - if block[:style] != 'poem'
+      - if block[:title].present?
+        .cb-text-textbox__credit = block[:title]
+      - if block[:subtitle].present?
+        .cb-text-textbox__caption = block[:subtitle]
+
+    - if alignment == 'center'
+      .divider.divider--leaf.divider--leaf-down

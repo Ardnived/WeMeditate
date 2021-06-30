@@ -225,7 +225,7 @@ ro:
     '500': "Ne cerem scuze, ceva nu a mers bine"
  
   javascript:
-    reading_time: "%minutes% minute de citire"
+    reading_time: "%{minutes} minute de citire"
     loading: "Încarcă..."
     popup:
       close: "Închide (Esc)"

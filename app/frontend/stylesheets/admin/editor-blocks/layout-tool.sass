@@ -1,0 +1,89 @@
+@use 'tool'
+@include set($tool: layout)
+
+@include block
+  .cdx-layout
+    margin: 30px 0
+
+    &__items
+      text-align: center
+
+    &__item
+      text-align: left
+      position: relative
+
+    &__image
+      margin-bottom: 8px
+      display: none
+
+      .ui.placeholder
+        height: 120px
+
+    &__img
+      width: 100%
+
+    &__remove_image
+      position: absolute
+      top: 10px
+      right: 10px
+      background: white
+      overflow: hidden
+      width: 18px !important
+      height: 18px !important
+      border-radius: 100%
+
+      &:hover
+        color: #DB2828
+
+  @include with-option(type, grid)
+    .cdx-layout
+      &__item
+        display: inline-block
+        width: 32%
+        vertical-align: top
+        border: 1px dotted rgba(0, 0, 0, 0.2)
+        border-radius: 4px
+        padding: 5px
+        margin: 2px
+
+      &__text
+        min-height: 58px
+
+  @include with-option(type, columns)
+    .cdx-layout
+      &__item
+        display: inline-block
+        width: 32%
+        vertical-align: top
+        border: 1px dotted rgba(0, 0, 0, 0.2)
+        border-radius: 4px
+        padding: 5px
+        margin: 2px
+
+        text-align: center
+
+      &__image
+        display: block
+
+      &__text
+        min-height: 58px
+        text-align: left
+
+  @include with-option(type, accordion)
+    .cdx-layout
+      &__items
+        padding: 0 10px
+
+      &__item
+        margin-bottom: 15px
+
+      &__title
+        position: relative
+        padding-left: 1.25em
+
+        &:after
+          font-family: Icons
+          content: '\f105'
+          position: absolute
+          top: 1px
+          left: 0

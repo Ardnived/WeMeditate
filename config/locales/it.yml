@@ -226,7 +226,7 @@ it:
     '500': "Ci dispiace, qualcosa è andato storto."
 
   javascript:
-    reading_time: "%minutes% minuti di lettura"
+    reading_time: "%{minutes} minuti di lettura"
     loading: "Caricamento..."
     popup:
       close: "Chiudi (Esc)"

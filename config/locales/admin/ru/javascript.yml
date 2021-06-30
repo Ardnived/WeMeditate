@@ -1,0 +1,178 @@
+
+en:
+  admin:
+    javascript:
+      search:
+        no_results: "No results found..."
+      uploader:
+        drag: "Drag %{file} here to upload"
+        waiting: "Waiting for %{count} file(s) to finish uploading..."
+        image:
+          one: "Image"
+          many: "Images"
+        audio:
+          one: "Music"
+          many: "Music"
+        file:
+          one: "File"
+          many: "Files"
+      blocks: # These blocks are the types of elements that can be used on a page
+        action:
+          title: "Action"
+          type:
+            title: "Type"
+            button: "Button"
+            form: "Form"
+          form:
+            title: "Form"
+            signup: "Signup"
+            contact: "Contact"
+          spacing:
+            title: "Spacing"
+            spaced: "Comfortable"
+            compact: "Compact"
+        catalog:
+          title: "We Meditate Content"
+          type:
+            title: "Type"
+            articles: "Articles"
+            treatments: "Techniques"
+            meditations: "Meditations"
+          style:
+            title: "Style"
+            image: "Image"
+            text: "Text-only"
+            title: "Title-only"
+        layout:
+          title: "Layout"
+          type:
+            title: "Type"
+            grid: "Grid"
+            accordion: "Accordion"
+            columns: "Columns"
+        list:
+          title: "List"
+          type:
+            title: "Type"
+            text: "Text"
+            contents: "Page Index"
+          style:
+            title: "Style"
+            unordered: "Dots"
+            ordered: "Numbers"
+            leaf: "Leaves"
+        media:
+          title: "Media"
+          type:
+            title: "Type"
+            image: "Image"
+            video: "Video"
+            audio: "Audio"
+          quantity:
+            title: "Quantity"
+            single: "Single"
+            galley: "Galley"
+          position:
+            title: "Position"
+            left: "Left"
+            right: "Right"
+            center: "Full-width"
+          size:
+            title: "Size"
+            normal: "Normal"
+            wide: "Wide"
+        paragraph:
+          title: "Text"
+          type:
+            title: "Type"
+            paragraph: "Paragraph"
+            header: "Header"
+          level:
+            title: "Level"
+            h1: "H1"
+            h2: "H2"
+            h3: "H3"
+            h4: "H4"
+            h5: "H5"
+            h6: "H6"
+        textbox:
+          title: "Textbox"
+          type:
+            title: "Type"
+            text: "Text Only"
+            image: "With Image"
+            splash: "Splash Screen"
+          alignment:
+            title: "Alignment"
+            left: "Left"
+            right: "Right"
+            center: "Centered"
+          style:
+            title: "Style"
+            quote: "Quote"
+            poem: "Poem"
+          spacing:
+            title: "Spacing"
+            overlap: "Overlap"
+            separate: "Separate"
+          background:
+            title: "Background"
+            white: "White"
+            image: "Image"
+            brown: "Gold/Brown"
+          color:
+            title: "Colour"
+            dark: "Dark"
+            light: "Light"
+          position:
+            title: "Position"
+            left: "Left"
+            right: "Right"
+        whitespace:
+          title: "Whitespace"
+          size:
+            title: "Size"
+            small: "Small"
+            medium: "Medium"
+            large: "Large"
+      decorations:
+        label: "Decorations"
+        triangle:
+          label: "Triangle"
+          alignment:
+            label: "Alignment"
+            left: "Left"
+            right: "Right"
+        circle:
+          label: "Circle"
+        gradient:
+          label: "Gradient"
+          alignment:
+            label: "Alignment"
+            left: "Left"
+            right: "Right"
+          color:
+            label: "Colour"
+            orange: "Orange"
+            blue: "Blue"
+            gray: "Gray"
+        leaves:
+          label: "Leaves"
+        sidetext:
+          label: "Vertical Text"
+          text: "Enter vertical text..."
+      placeholders:
+        title: "Title"
+        text: "Text"
+        items: "Items"
+        action: "Button Text"
+        url: "Paste a link here"
+        quote: "Enter a quote" # "Quote" as in a quotation from some other text or person
+        alt: "Describe the image for the visually impaired"
+        caption: "Enter a caption" # "Caption" as in a piece of text describing an image
+        credit: "Enter a credit" # "Credit" as in the credit for an image or quotation
+        optional: "optional"
+        search: "Search"
+        email: "Email"
+        message: "Message"
+        countdown: "01:23:45"

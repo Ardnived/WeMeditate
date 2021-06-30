@@ -1,0 +1,30 @@
+@use '../tool'
+@include set($tool: vimeo)
+
+@include block
+  .cdx-vimeo
+    text-align: center
+
+    img
+      border-radius: 0.28571429rem
+
+    &__item
+      position: relative
+      display: inline-block
+      width: 33%
+      padding: 0 2.5px
+      margin: 5px 0
+      vertical-align: top
+      text-align: left
+
+    &__item:first-child:last-child
+      img
+        max-height: 300px
+        object-fit: contain
+
+    &__items__image
+      overflow: hidden
+      margin-bottom: 2px
+
+    &__items__title
+      font-weight: bold

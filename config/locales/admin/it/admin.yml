@@ -493,12 +493,3 @@ it:
         no_languages: "Nessuna Lingua"
         all_languages: "Tutte le lingue"
         other_languages: "Altre lingue"
-
-    javascript:      
-      email: "Email"
-      message: "Messaggio"
-      drag_images_to_upload: "Trascina le immagini qui per caricarle"
-      no_results: "Nessun risultato..."
-      waiting_for_upload: "Aspettando per il caricamento di %{count} file(s)..."
-      file: "File"
-      files: "Files"

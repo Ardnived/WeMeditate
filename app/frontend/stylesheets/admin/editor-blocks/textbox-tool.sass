@@ -1,0 +1,222 @@
+@use 'tool'
+@include set($tool: textbox)
+
+// IMAGE UPLOADER
+@include block
+  .cdx-input__uploader,
+  .ui.placeholder
+    height: 100%
+
+  .cdx-textbox__remove-image
+    position: absolute
+    top: 5px
+    right: 5px
+    background: white
+    overflow: hidden
+    width: 18px !important
+    height: 18px !important
+    border-radius: 100%
+
+    &:hover
+      color: #DB2828
+      
+
+// TEXT TYPE
+@include type(text)
+  .cdx-block
+    padding: 15px 5px
+    text-align: center
+    max-width: 80%
+    margin-left: auto
+    margin-right: auto
+
+  .cdx-textbox__fields
+    display: flex
+    flex-direction: column
+
+  @include on-field(text)
+    font-size: 1.125em
+    min-height: 0
+    margin-bottom: 10px
+    order: -1
+
+  @include on-field(title)
+    margin: 0
+    font-weight: 500
+
+  @include on-field(subtitle)
+    font-size: 0.8em
+
+  @include on-fields(action, url, image)
+    display: none
+
+  @include with-option(alignment, left)
+    .cdx-block
+      padding-right: 30%
+      text-align: left
+      margin-left: 0
+
+      border-left: 4px solid lightgray
+
+  @include with-option(alignment, right)
+    .cdx-block
+      padding-left: 30%
+      text-align: right
+      margin-right: 0
+
+  @include with-option(style, poem)
+    .cdx-block
+      font-style: italic
+
+
+// IMAGE TYPE
+@include type(image)
+  .cdx-block
+    min-height: 350px
+    margin: 30px 0
+
+  .cdx-input--button
+    border-color: transparentize(black, 0.15)
+
+  .cdx-input--url
+    border-left: 2px solid transparentize(black, 0.15)
+
+  .cdx-textbox__fields
+    position: absolute
+    top: 40px
+    z-index: 1
+    width: 50%
+    margin: 30px
+    padding: 10px
+    text-align: left
+
+  &.cdx-block--custom-focus
+    .cdx-textbox__fields
+      z-index: 10
+      box-shadow: 0px 3px 15px rgba(0,0,0,0.2)
+      background: transparentize(white, 0.5)
+
+  &:not(.cdx-block--custom-focus)
+    overflow: hidden
+
+    &::after
+      content: ""
+      display: block
+      position: absolute
+      width: 100%
+      height: 20px
+      bottom: 0
+      background: linear-gradient(transparent, #FFF) left repeat
+      z-index: 1
+
+    .cdx-textbox__remove-image
+      display: none
+
+  @include on-field(image)
+    position: relative
+    width: 40%
+    display: inline-block
+    //text-align: center
+
+    .uploader
+      height: 100%
+      display: flex
+      align-items: center
+      padding: 50px
+
+    img
+      width: 100%
+      height: 100%
+      object-fit: cover
+
+  @include on-field(subtitle)
+    display: none
+
+  // Option adjustments
+  @include with-option(position, left)
+    .cdx-block
+      text-align: right
+
+    .cdx-textbox__fields
+      left: 0
+
+  @include with-option(position, right)
+    .cdx-textbox__fields
+      right: 0
+
+  @include with-option(spacing, overlap)
+    .cdx-textbox__fields
+      width: 60%
+
+  @include with-option(background, white)
+    .cdx-textbox__fields
+      border: 1px solid transparentize(black, 0.2)
+      background: white
+
+  @include with-option(background, image)
+    .cdx-textbox__fields
+      border: 2px solid lighten(black, 15%)
+
+    @include on-field(image)
+      width: 100%
+      height: 380px
+
+      .uploader
+        height: auto
+        padding: 10px
+        display: block
+
+    @include with-option(color, light)
+      .cdx-textbox__fields
+        filter: invert(1)
+
+    @include with-option(color, dark)
+      .cdx-textbox__fields
+        border: none
+
+  @include with-option(background, brown)
+    background: beige
+    padding: 10px
+
+    .cdx-textbox__fields
+      top: 0
+      margin: 20px
+
+
+// SPLASH TYPE
+@include type(splash)
+  .cdx-block
+    text-align: center
+    margin: 10px 0
+    padding: 0
+
+  .cdx-input--button
+    border-color: transparentize(black, 0.15)
+
+  .cdx-textbox__fields
+    position: absolute
+    top: 50%
+    left: 50%
+    z-index: 1
+    width: 40%
+    transform: translateX(-50%) translateY(-50%)
+
+  @include on-field(subtitle)
+    margin-bottom: 10px
+    margin-top: -5px
+
+  @include on-field(action)
+    margin-top: 20px
+
+  @include on-field(image)
+    display: block
+    height: 425px
+
+    img
+      width: 100%
+      height: 100%
+      object-fit: cover
+
+  @include with-option(color, light)
+    .cdx-textbox__fields
+      filter: invert(1)

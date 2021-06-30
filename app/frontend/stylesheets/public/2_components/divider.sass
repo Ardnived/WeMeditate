@@ -1,0 +1,53 @@
+@import "../../mixins/*"
+
+.divider
+  max-width: 400px
+  width: 100%
+  margin: auto
+
+  background-color: #AAAAA9
+  height: 1px
+
+.divider--leaf
+  position: relative
+
+.divider--leaf:after
+  content: ''
+  position: absolute
+  left: 50%
+
+  padding: 0 20px
+  display: block
+  font-size: 2.88rem
+  width: 0.9em
+  height: 1em
+
+  background-color: white
+  background-image: image('graphics/leaves.svg')
+  background-repeat: no-repeat
+  background-position: center
+
+  @include laptop-or-larger
+    font-size: 3.2rem
+
+.divider--leaf-up
+  margin-top: 2em
+
+  &:after
+    top: 2px
+    transform-origin: center
+    transform: translateX(-50%) translateY(-100%)
+
+.divider--leaf-down
+  margin-bottom: 2em
+
+  &:after
+    top: -2px
+    transform-origin: center
+    transform: rotate(180deg) translateX(50%)
+
+.divider--leaf-only
+  background: transparent
+
+  &:after
+    background-color: transparent

@@ -5,7 +5,7 @@
 - original_items = (local_assigns.key?(:items) ? local_assigns[:items] : f.object.send(attribute)&.to_a) || []
 - items = draft_items || original_items
 
-.field id=local_assigns[:id] class="#{local_assigns[:class]} #{'draft' if draft_items}" data-draft='repeatable'
+.field id=local_assigns[:id] class="#{local_assigns[:class]} #{'draft' if draft_items}" data-draft='repeatable' data-attribute=attribute
   = draft_reset_buttons(:repeatable, original_items, draft_items) if draft_items
   = f.label attribute
 

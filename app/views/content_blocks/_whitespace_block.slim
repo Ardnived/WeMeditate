@@ -1,10 +1,10 @@
 
-.content__whitespace class="content__whitespace--#{block[:size]}"
+.cb-whitespace class="cb-whitespace--#{block[:size]}"
   .gradient-wrapper
     = render_decoration :gradient, block, size: %i[tall long]
 
-  .content__whitespace__circle
+  .cb-whitespace__circle
     = render_decoration :circle, block
 
-  .content__whitespace__triangle
+  .cb-whitespace__triangle
     = render_decoration :triangle, block

@@ -1,0 +1,14 @@
+
+ruby:
+  classes = []
+  classes << "cb-text-list--#{block[:style]}"
+
+.cb-text-list class=classes
+  - if block[:style] == 'ordered'
+    ol
+      - block[:items].each do |item|
+        li.cb-text-list__item = item
+  - else
+    ul
+      - block[:items].each do |item|
+        li.cb-text-list__item = item

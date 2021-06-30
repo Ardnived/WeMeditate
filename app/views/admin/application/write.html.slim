@@ -4,7 +4,6 @@ ruby:
   
   allow = policy(@record)
   has_draft = @record.has_draft?(:content)
-  data = { upload: polymorphic_admin_path([:admin, @record, MediaFile]), triangle: image_path('graphics/triangle.svg') }
 
 = simple_form_for @record, url: polymorphic_admin_path([:admin, @record]), html: { id: "editor-form" } do |f|
   - locale = !@record.try(:has_translation?, :content) ? @record.original_locale : Globalize.locale
@@ -19,23 +18,7 @@ ruby:
         /= draft_reset_buttons(:content, @record.parsed_content, JSON.parse(content))
         /.clearfix
 
-      - if @splash_style
-        #splash-editor.ce-block data-style=@splash_style
-          .cdx-splash.cdx-block class="cdx-splash--#{@splash_style}"
-            #splash-background
-              #splash-background-image
-              #splash-title.cdx-input.cdx-input--title contenteditable=true data-placeholder="Enter some leading text"
-              #splash-text.cdx-input.cdx-input--text contenteditable=true data-placeholder="Enter a subtitle"
-
-              - if @splash_style == :stream
-                .cdx-splash-countdown 01:23:45
-              
-              #splash-action.cdx-input.cdx-input--button contenteditable=true data-placeholder="Button Text"
-              #splash-url.cdx-input.cdx-input--url contenteditable=true data-placeholder="Enter url link"
-
-            #splash-uploader
-
-      #content-editor data=data data-content=content.to_json
+      #content-editor data-content=content.to_json
 
     - if @record.respond_to?(:published) && !allow.review?
       - if @record.draftable?
@@ -67,6 +50,4 @@ ruby:
         button.ui.basic.positive.button type='submit'
           = translate 'admin.action.simple.update'
 
-      div#upload-loader style='display: none'
-        i.notched.circle.loading.icon
-        span
+      = render 'uploader', endpoint: polymorphic_admin_path([:admin, @record, MediaFile])

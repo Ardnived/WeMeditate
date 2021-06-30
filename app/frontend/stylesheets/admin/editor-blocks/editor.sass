@@ -1,0 +1,128 @@
+
+.codex-editor
+  max-width: 650px
+
+.ce-block
+  position: relative
+
+.cdx-block--custom-focus
+  z-index: 10
+
+// OPTIONS
+.cdx-options i.icon
+  height: auto
+
+.cdx-options
+  position: absolute
+  left: calc(100% + 50px)
+  top: 0
+
+  display: none
+  white-space: nowrap
+
+  .cdx-block--custom-focus &
+    display: block
+
+  .cdx-options__header
+    display: block
+    font-weight: bold
+    font-size: 12px
+    text-transform: uppercase
+    padding: 4px
+
+    &:not(:first-child)
+      font-size: 11px
+      margin-top: 4px
+
+  .cdx-options__title
+    display: block
+    padding: 4px
+    padding-bottom: 0
+    font-weight: bold
+    font-size: 10px
+    text-transform: uppercase
+    opacity: 0.8
+
+    &[data-label]::after
+      font-weight: normal
+      content: ":  " attr(data-label)
+
+  p
+    padding: 4px
+    padding-bottom: 0
+    font-size: 10px
+    opacity: 0.8
+    width: 180px
+    white-space: normal
+
+  .cdx-settings-button
+    display: inline-block
+    margin-right: 3px
+
+    &--fluid
+      display: block
+      width: 100%
+      text-align: left
+      padding: 0 5px !important
+      line-height: 24px
+      height: 24px
+      font-size: 12px
+      margin: 0
+      margin-bottom: 1px
+
+    &--active.cdx-settings-button--fluid i::before
+      content: "\f00c"
+
+// INPUTS
+.cdx-input
+  outline: none
+  border: none
+  box-shadow: none
+  padding: 0
+  border-radius: 0
+
+  &--title
+    font-weight: bold
+    margin-bottom: 10px
+
+  &--textarea
+    min-height: 58px
+    resize: none
+
+  &--caption
+    font-style: italic
+
+  &--url
+    padding: 0 5px
+    opacity: 0.8
+    font-style: italic
+
+  &--button
+    border: 2px solid darkgray
+    margin-top: 10px
+    margin-bottom: 5px
+    padding: 0.5em 1em
+    text-align: center
+
+    display: inline-block
+    min-width: 120px
+    max-width: 200px
+    width: auto
+    white-space: nowrap
+    overflow: hidden
+
+.ui.form .cdx-options
+  .ce-settings-input,
+  .ce-settings-select
+    //display: block
+    margin-bottom: 1px
+    margin-left: 20px
+    font-size: 13px
+
+    &:last-child
+      margin-bottom: 5px
+
+.cdx-settings-button:not(.cdx-settings-button--active)
+  ~ .ce-settings-input,
+  ~ .ce-settings-select
+    display: none

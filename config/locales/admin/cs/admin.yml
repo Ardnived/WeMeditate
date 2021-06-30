@@ -499,12 +499,3 @@ cs:
         no_languages: "No Languages"
         all_languages: "All Languages"
         other_languages: "Other Languages"
-
-    javascript:      
-      email: "Email"
-      message: "Message"
-      drag_images_to_upload: "Drag images here to upload"
-      no_results: "No results found..."
-      waiting_for_upload: "Waiting for %{count} file(s) to finish uploading..."
-      file: "File"
-      files: "Files"

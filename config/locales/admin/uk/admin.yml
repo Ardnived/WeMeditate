@@ -501,12 +501,3 @@ uk:
         no_languages: "Без мов"
         all_languages: "Всі мови"
         other_languages: "Інші мови"
-
-    javascript:      
-      email: "E-mail"
-      message: "Повідомлення"
-      drag_images_to_upload: "Перетягніть сюди зображення для завантаження"
-      no_results: "Результатів не знайдено ..."
-      waiting_for_upload: "Очікується завантаження %{count} файлів ..."
-      file: "Файл"
-      files: "Файли"

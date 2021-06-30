@@ -504,12 +504,3 @@ ru:
         no_languages: "Нет языков" 
         all_languages: "Все языки"
         other_languages: "Другие языки"
-
-    javascript:      
-      email: "E-mail"
-      message: "Сообщение"
-      drag_images_to_upload: "Перетащите сюда изображения для загрузки"
-      no_results: "Результатов не найдено..."
-      waiting_for_upload: "Ожидается загрузка %{count} файлов..."
-      file: "Файл"
-      files: "Файлы"

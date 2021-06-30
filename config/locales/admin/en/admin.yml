@@ -164,104 +164,17 @@ en:
     # This section defines text that will be shown in the content editor.
     content:
       outline_title: "Structure of the %{page} Content" # The title for a section which outlines the structure of a page.
-      blocks: # These blocks are the types of elements that can be used on a page
-        header: "Title"
-        paragraph: "Paragraph"
-        image: "Image"
-        action: "Button"
-        catalog: "WeMeditate Content"
-        list: "List"
-        quote: "Quote"
-        form: "Form"
-        structured: "Structured Text"
-        textbox: "Text With Image"
-        video: "Video"
-        whitespace: "Whitespace"
-      settings:
-        tunes: "Options"
-        decorations: "Decorations"
-      tunes: # These are formatting styles for content blocks
-        centered: "Centered"
-        stretch: "Fill screen width"
-        separate: "Separate image and text"
-        asGallery: "Gallery"
-        asWisdom: "Ancient Knowledge Style"
-        asVideo: "Video"
-        asPoem: "Poetry"
-        withImages: "Show Images"
-        invert: "Invert Colours"
-        compact: "No Spacing After Block"
-        style: # These are list styles
-          unordered: "Unordered" # Also called a "Bulleted" list
-          ordered: "Ordered" # Also called a "Numbered" list
-          leaf: "Leaf Icon" # As in a list with a leaf icon instead of the bullet
-        alignment: # These are text alignments
-          left: "Left Aligned"
-          center: "Center Aligned"
-          right: "Right Aligned"
-        position: # A 'callout' is an image or quotation which is inserted at the side of the text
-          center: "Centered"
-          left: "As Left Callout"
-          right: "As Right Callout"
-        type: # Note to Developer: These must be translated manually because they are accessed in JavaScript
-          articles: "Articles"
-          treatments: "Techniques"
-          meditations: "Meditations"
-        level: # These are heading levels
-          h1: "Level 1"
-          h2: "Level 2"
-          h3: "Level 3"
-          h4: "Level 4"
-          h5: "Level 5"
-          h6: "Level 6"
-        size:
-          narrow: "Narrow"
-          wide: "Wide"
-          small: "Small"
-          medium: "Medium"
-          large: "Large"
-        format:
-          button: "Button"
-          grid: "Grid"
-          accordion: "Accordion"
-          columns: "Columns"
-          signup: "Signup Form"
-          contact: "Contact Form"
-      decorations:
-        triangle: "Triangle Decoration"
-        circle: "Circle Decoration"
-        gradient: "Gradient Decoration"
-        leaves: "Leaf Decorations"
-        sidetext: "Vertical Text"
-        triangle_alignment:
-          left: "Left Triangle"
-          right: "Right Triangle"
-        gradient_alignment:
-          left: "Left Gradient"
-          right: "Right Gradient"
-        gradient_color:
-          orange: "Orange Gradient"
-          blue: "Blue Gradient"
-          gray: "Gray Gradient"
-        sidetext_text: "Enter vertical text..."
-      placeholders:
-        title: "Title"
-        text: "Text"
-        items: "Items"
-        action: "Button Text"
-        url: "Paste a link here"
-        quote: "Enter a quote" # "Quote" as in a quotation from some other text or person
-        alt: "Describe the image for the visually impaired"
-        caption: "Enter a caption" # "Caption" as in a piece of text describing an image
-        credit: "Enter a credit" # "Credit" as in the credit for an image or quotation
-        optional: "optional"
-        search: "Search"
       words:
         one: "%{count} word"
         other: "%{count} words"
       items:
         one: "%{count} item"
         other: "%{count} items"
+      blocks:
+        paragraph:
+          header: "Header"
+          paragraph: "Paragraph"
+
 
 
     # ===== MISCELLENEOUS ===== #
@@ -499,12 +412,3 @@ en:
         no_languages: "No Languages"
         all_languages: "All Languages"
         other_languages: "Other Languages"
-
-    javascript:      
-      email: "Email"
-      message: "Message"
-      drag_images_to_upload: "Drag images here to upload"
-      no_results: "No results found..."
-      waiting_for_upload: "Waiting for %{count} file(s) to finish uploading..."
-      file: "File"
-      files: "Files"

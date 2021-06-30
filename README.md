@@ -84,7 +84,7 @@ Those vimeo videos that use the HTML5 player must have vimeo metadata loaded, an
 An additional complication is that some videos, such as those on the Meditation and Treatment pages also have vertical versions of those videos, which are used for mobile. JS/CSS code is set up to switch between these two orientations.
 
 ### Inline SVGs
-In many parts of the code we render SVGs inline so that we can then manipulate them using CSS. Unfortunately we use two methods to accomplish this inlining. One is the `inline_svg_tag` gem/method on the server side, which is the preferred method. However some SVGs must be inlined using JavaScript and the `js-inline-svg` class. This is because those SVGs are hosted externally (on Google Cloud) and the `inline_svg_tag` method is not able to handle them.
+In many parts of the code we render SVGs inline so that we can then manipulate them using CSS. Unfortunately we use two methods to accomplish this inlining. One is the `inline_svg` gem/method on the server side, which is the preferred method. However some SVGs must be inlined using JavaScript and the `js-inline-svg` class. This is because those SVGs are hosted externally (on Google Cloud) and the `inline_svg_tag` method is not able to handle them.
 
 Ideally we would find a solution to remove the `js-inline-svg` method, and only using `inline_svg_tag`, but for the moment this is how it works.
 

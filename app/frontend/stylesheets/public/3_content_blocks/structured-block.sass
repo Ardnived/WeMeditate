@@ -1,0 +1,139 @@
+
+$item-padding: 15px
+
+.content__structured:not(.content__structured--accordion)
+  @extend %wide-content-width
+
+.content__structured--accordion
+  @extend %narrow-content-width
+
+// ===== CONTENT ===== //
+.content__structured__item
+  @include tablet-or-larger
+    padding-left: $item-padding
+    padding-right: $item-padding
+
+.content__structured__image
+  width: 100%
+  max-height: 200px
+  margin: auto
+  object-fit: contain
+
+.content__structured__title
+  margin-bottom: 16px
+
+  color: $color-text-dark
+  font-weight: $font-semibold
+  font-size: 2.2rem
+  line-height: 1.41
+  letter-spacing: 0.41px
+
+.content__structured__text
+  font-size: 1.6rem
+  line-height: 1.875
+  letter-spacing: 0.18px
+  margin-top: 0.5em
+  margin-bottom: 0.5em
+
+  @include laptop
+    font-size: 1.5rem
+
+.content__structured__loadmore
+  text-align: center
+  margin-top: 30px
+
+  @include tablet-or-larger
+    margin-top: 50px
+
+// ===== GRID ===== //
+.content__structured--grid
+  margin-top: 20px
+
+  @include tablet-or-larger
+    margin-top: 100px
+
+// ===== COLUMNS ===== //
+.content__structured--columns
+  $image-height: 200px
+  text-align: center
+  margin-bottom: 120px
+
+  @include tablet
+    padding: 0 (100px - $item-padding + $gutter-width) !important
+
+  @include laptop-or-larger
+    margin-bottom: 50px
+
+  .content__structured__item
+    text-align: left
+
+    @include laptop-or-larger
+      max-width: 400px + ($item-padding * 2)
+      padding-left: $item-padding * 2
+      padding-right: $item-padding * 2
+
+  .content__structured__title
+    text-align: center
+    margin-bottom: 30px
+
+    @include tablet
+      margin-top: 70px
+
+  .content__structured__image
+    height: $image-height
+    margin-bottom: 60px
+
+    @include tablet-or-larger
+      margin-bottom: 30px
+
+  .slick-dots
+    top: $image-height
+    bottom: auto
+
+  .slick-arrow
+    top: 100%
+    margin-top: 10px
+
+    color: $color-text-darker
+    font-size: 1.8rem
+    line-height: 1.25
+    height: auto
+    width: auto
+    max-width: 100px
+
+  @each $side in left right
+    $opposite: if($side == left, right, left)
+    $key: if($side == left, prev, next)
+
+    .slick-#{$key}:before
+      margin-#{$opposite}: 15px
+      float: $side
+      line-height: 44px
+
+// ===== ACCORDION ===== //
+.content__structured--accordion
+  .content__structured__title
+    position: relative
+    cursor: pointer
+
+  .content__structured__title:after
+    font-family: $font-icons !important
+    content: $icon-arrow-left
+    position: absolute
+    right: 0
+    transform: rotate(90deg)
+    transition: transform 0.3s 
+
+  .content__structured__item:not(:last-child)
+    border-bottom: 1px solid $color-graphic-normal
+
+  .content__structured__text
+    transition: max-height 0.5s ease
+    overflow: auto
+
+  .content__structured__item--closed
+    .content__structured__title:after
+      transform: rotate(-90deg)
+
+    .content__structured__text
+      max-height: 0 !important
