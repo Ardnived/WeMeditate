@@ -53,11 +53,12 @@ Rails.application.routes.draw do
       devise_for :users, controllers: { invitations: 'users/invitations' }
 
       root to: 'application#home'
+      get 'robots.txt', to: 'robots#txt'
       get 'sitemap.xml.gz', to: 'application#sitemap'
       get '404', to: 'application#error'
       get '422', to: 'application#error'
       get '500', to: 'application#error'
-  
+
       post :contact, to: 'application#contact'
       post :subscribe, to: 'application#subscribe'
       get :map, to: 'application#map'
@@ -85,6 +86,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'robots.txt', to: 'robots#txt'
   get '404', to: 'application#error'
   get '422', to: 'application#error'
   get '500', to: 'application#error'
