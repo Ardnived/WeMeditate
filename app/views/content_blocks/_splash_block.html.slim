@@ -8,7 +8,7 @@ ruby:
   .content__splash.js-splash class="content__splash--#{block[:style]}" style=background data-invert=invert
     - if block[:style] == 'home'
       .preloader.js-preloader style=background data-turbolinks-permanent=true
-        = image_pack_tag 'graphics/preloader.svg', class: 'preloader__graphic'
+        = image_pack_tag 'media/images/graphics/preloader.svg', class: 'preloader__graphic'
 
     .content__splash__wrapper
       h1.content__splash__title = block[:title]
